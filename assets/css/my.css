@@ -1,0 +1,111 @@
+@import url('fonts.css');
+
+.reveal {
+    /* font-family: 'Local Open Sans', sans-serif; */
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+.slide p {
+    font-size: 120%;
+}
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+    text-transform: none !important;
+    font-family: 'Local Quicksand', sans-serif;
+    /* font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-style: normal; */
+}
+
+.reveal h1 {
+    font-size: 2.8em;
+}
+
+.reveal h2 {
+    font-size: 1.2em;
+}
+
+.reveal h3 {
+    font-size: 1.55em;
+}
+
+.reveal .slides li li {
+    font-size: 80%;
+}
+
+/* .reveal .slides ul, .reveal .slides ol, .reveal .slides p {
+    font-size: 1.2em;
+} */
+
+.reveal .slides section.subtitle p {
+    transform: translateY(3em); 
+    color:darkblue;
+    font-size: 140%;
+    text-align: center;
+    font-family: 'Local Quicksand', sans-serif;
+    font-size: 2em;
+}
+
+.reveal .slides section:not(.title) {
+    text-align: left;
+}
+
+.reveal .slides section:not(.title) h2 {
+    margin-bottom: 0.7em;
+    border-bottom: 2px solid black;
+}
+
+div.right_media, div.left_media {
+    display: flex;
+    justify-content: space-between;
+}
+
+div.right_media > *:first-child {
+    flex: 0 0 55%;
+    padding-right: 1em;
+}
+div.left_media > *:first-child {
+    flex: 0 0 45%;
+    padding-right: 1em;
+}
+
+figure {
+    text-align: center;
+}
+
+.reveal section img {
+    margin: 15px 0px;
+    background: rgba(255, 255, 255, 0);
+    border: 1px solid #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.reveal section figure.svg img {
+    margin: 15px 0px;
+    border: none;
+    box-shadow: none !important ;
+    background: transparent;
+}
+
+.reveal section figure.svg_print img {
+    margin: 15px 0px;
+    border: none;
+    box-shadow: none !important ;
+    background: transparent;
+}
+
+
+.reveal figcaption {
+    font-size: .5em;
+}
+
+.reveal blockquote {
+    width: 100%;
+    margin: 2em 0 !important;
+}
+
