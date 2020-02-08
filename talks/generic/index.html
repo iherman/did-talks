@@ -7,18 +7,11 @@
 		<title>Decentralized Identifiers</title>
 
 		<link rel="stylesheet" href="../../reveal/css/reveal.css">
-		<!-- <link rel="stylesheet" href="css/theme/sky.css"> -->
+		<link rel="stylesheet" href="../../reveal/css/theme/sky.css" id="theme">
 		<!-- Viable alternatives: beige.css, -->
-		<!-- Viable alternatives: black, blood, league need new code highlights and a new version of the logo:-(), -->
-		<link rel="stylesheet" href="../../reveal/css/theme/beige.css">
+		<!-- Viable alternatives: black, blood, league, but need new code highlights, change in the colors of the images, and a new version of the logo -->
 
-		<!-- Theme used for syntax highlighting of code -->
-		<!--
-			See https://highlightjs.readthedocs.io/en/latest/css-classes-reference.html#language-names-and-aliases
-			for the language names (to be used as class values)
-			https://github.com/highlightjs/highlight.js/tree/master/src/styles for available styles
-		-->
-		<link rel="stylesheet" href="../../reveal/assets/css/highlights/atom-one-light.css">
+		<link rel="stylesheet" href="../../assets/css/highlights/atom-one-light.css">
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -30,24 +23,6 @@
 		</script>
 
 		<link rel="stylesheet" href="../../assets/css/my.css">
-		<style>
-.reveal blockquote.quote:before, .reveal q.quote:before {
-	content: '“'
-}
-.reveal blockquote.quote:after, .reveal q.quote:after {
-	content: '”'
-}
-
-.reveal blockquote {
-	background: rgba(255, 255, 255, 0);
-	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.reveal pre {
-	box-shadow: 0px 0px 6px rgba(0, 0, 0, 0);
-}
-
-		</style>
 	</head>
 	<body>
 		<div class="reveal">
@@ -80,8 +55,8 @@
 
 						The fundamentals of the Web Architecture are defined on three axes:
 
-						> 1. **Identification:** “URIs are used to identify resources.”
-						> 2. **Interaction:** “Web agents communicate using standardized protocols[…]. By entering a URI [user agents] perform a retrieval action for the resource identified by the URI.”
+						> 1. **Identification:** “URIs are used to identify resources.”  
+						> 2. **Interaction:** “Web agents communicate using standardized protocols[…]. By entering a URI [user agents] perform a retrieval action for the resource identified by the URI.”  
 						> 3. **Formats:** “Most protocols […] contain a payload of representation data and metadata, to transfer the representation between agents.”
 					</textarea>
 				</section>
@@ -323,7 +298,106 @@
 					</textarea>
 				</section>
 
-				<!-- @@@@@Use section comes here  -->
+				<section class='subtitle'>
+					<p>Some use cases</p>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## There are simple ones
+
+						- Securing unique, secure, etc., identity for persons, animals, objects,…
+							- unique and unambiguous literature references
+							- consistent semantic statements on “resources”
+							- identify objects in an internet of “things”
+							- etc.
+						- DID usage is often bound to Verifiable Credentials
+							- e.g., life-long credential proving a University Degree, identified with a DID
+					</textarea>
+				</section>
+
+				<section>
+					<h2>Find information on purchased goods</h2>
+					<figure class='svg' style="transform: translateY(-2.4em)scale(0.9);">
+						<img src="../../assets/images/Purchased_Goods.svg" width="1100"/>
+					</figure>
+					<figure class='svg_print'>
+						<img src="../../assets/images/Purchased_Goods.png" width="800"/>
+					</figure>
+				</section>
+
+				<section>
+					<h2>Find information on purchased goods</h2>
+					<div class='left_media'>
+						<div>
+							<figure class='svg'  style="transform: translateY(1.2em) scale(1.3)">
+								<img src="../../assets/images/Purchased_Goods.svg" width="900"/>
+							</figure>
+							<figure class='svg_print'>
+								<img src="../../assets/images/Purchased_Goods.png" width="800"/>
+							</figure>		
+						</div>
+						<ul>
+							<li>It is very important that:
+								<ul>
+									<li>the identification is unique and persistent</li>
+									<li>the information has not been tampered with</li>
+								</ul>
+							</li>
+							<li>
+								The same mechanism can be used for constituent parts of goods but the information can remain fully decentralized
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Encrypted Data Vaults
+
+						- Storage of encrypted data for private individuals, companies, etc:
+							- the storage provider cannot view, analyze, etc., the data
+							- the data owner can easily move the encrypted data elsewhere
+							- interoperate with other data vaults easily
+							- but: the responsibility of key management is on the user
+						- Solution being explored:
+							- items are encrypted using the owners’ key
+							- keys are bound to the owners’ (or the data item’s) DID
+						- _The data is fully under the owners’ control_
+					</textarea>
+				</section>
+
+				<section>
+					<h2>Pool of relationships</h2>
+					<figure class='svg' style="transform: translateY(-1.3em)scale(1.05);">
+						<img src="../../assets/images/Pool_of_Relationships.svg" width="1000"/>
+					</figure>
+					<figure class='svg_print'>
+						<img src="../../assets/images/Pool_of_Relationships.png" width="800"/>
+					</figure>
+				</section>
+
+				<section >
+					<h2>Pool of relationships</h2>
+					<div class='left_media'>
+						<div>
+							<figure class='svg' style="transform: translateY(1.5em) scale(1.5)">
+								<img src="../../assets/images/Pool_of_Relationships.svg" width="900"/>
+							</figure>
+							<figure class='svg_print'>
+								<img src="../../assets/images/Pool_of_Relationships.png" width="800"/>
+							</figure>
+						</div>
+						<ul>
+							<li>
+								No need for a complex key management system
+							</li>
+							<li>
+								Both “A” and “B” may remain anonymous
+							</li>
+						</ul>
+					</div>
+				</section>
 
 				<section class='subtitle'>
 					<p>The real technical details</p>
@@ -343,7 +417,6 @@
 					</figure>
 				</section>
 
-
 				<section>
 					<h2>DID is a new type of URI</h2>
 					<figure class='svg'>
@@ -362,19 +435,6 @@
 					<figure class='svg_print'>
 						<img src="../../assets/images/URIs_URNs_URLs.png" width="800"/>
 					</figure>
-				</section>
-
-				<section  data-markdown>
-					<textarea data-template>
-						## Why is it important that it is a URI
- 
-						- DID are within the IETF/W3C world
-							- tools, libraries may be used to manage them
-							- existing specifications automatically apply to DID-s:
-								- "`<a href='did:btcr:xyv2-xzpq-q9wa-p7t'>abcd</a>`" is valid HTML
-								- "`<did:btcr:xyv2-xzpq-q9wa-p7t> a rdf:Class.`" is a valid RDF Turtle statement
-						- _DIDs are part of the Web_
-					</textarea>
 				</section>
 
 				<section  data-markdown>
@@ -489,21 +549,19 @@
 					</textarea>
 				</section>
 
-				<section  data-markdown>
-					<textarea data-template>
-						## Typical DID document structure
+				<section>
+						<h2>Typical DID document structure</h2>
  
-						```
-						{
-							"id":"did:example:abcedefgh", 
-							"controller":"did:example:xyzwvy", 
-							"publicKey":[{ ... }], 
-							"authentication":[{ ... }], 
-							"proof":[{ ... }], 
-							"service":[{ ... }] 
-						}
-						```
-					</textarea>
+						<pre><code class='hljs' data-trim contenteditable>
+{
+  "id":"did:example:abcedefgh", 
+  "controller":"did:example:xyzwvy", 
+  "publicKey":[{ ... }], 
+  "authentication":[{ ... }], 
+  "proof":[{ ... }], 
+  "service":[{ ... }] 
+}
+					</code></pre>
 				</section>
 
 				<section  data-markdown>
@@ -588,7 +646,7 @@
 							  "serviceEndpoint":"https://example.org/photos/34567"
 							},{
 							  "type":"PersonalWebSite",
-							  "serviceEndpoint":"https://www.example2.org/myHomePage
+							  "serviceEndpoint":"https://www.example2.org/myHomePage"
 							}]
 						}
 						```
@@ -614,6 +672,8 @@
 						<dd><a href="https://www.w3.org/TR/did-use-cases/">https://www.w3.org/TR/did-use-cases/</a></dd>
 						<dt>Core spec</dt>
 						<dd><a href="https://www.w3.org/TR/did-core/">https://www.w3.org/TR/did-core/</a></dd>
+						<dt>These slides</dt>
+						<dd><a href="https://iherman.github.io/did-talks/talks/generic/">https://iherman.github.io/did-talks/talks/generic/</a></dd>
 					</dl>
 				</section>
 				<section class='subtitle'>
@@ -622,7 +682,7 @@
 			</div>
 		</div>
 
-		<!-- Adding a script to print images/svg properly through png files -->
+		<!-- Adding a script to print images/svg properly through the alternative png files -->
 		<script>
 			var query = window.location.search.match( /print-pdf/gi ) ? 'figure.svg' : 'figure.svg_print';
 			document.querySelectorAll(query).forEach((item) => {
@@ -659,7 +719,8 @@
 					{ src: '../../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 					{ src: '../../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
 					{ src: '../../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: '../../reveal/plugin/math/math.js', async: true }
+					{ src: '../../reveal/plugin/math/math.js', async: true },
+					{ src: '../../reveal/plugin/search.js', async: true}
 				]
 			});
 		</script>
