@@ -14,13 +14,11 @@
  * GLOBAL STYLES
  *********************************************/
 body {
-  background:  
-  bottom right / 9em 100% linear-gradient(hsl(211, 45%, 25%), hsl(205, 42%, 92%)) no-repeat, 
-  #fff
+  background: bottom right / 9em 100% linear-gradient(hsl(211, 45%, 25%), hsl(205, 42%, 92%)) no-repeat,  #fff
 }
 
 .reveal {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'My Gill Sans', sans-serif;
   font-weight: 300;
   font-size: 40px;
   font-weight: normal;
@@ -41,8 +39,12 @@ body {
 .reveal .slides section > section {
   line-height: 1.3;
   font-weight: inherit;
+}
+
+.reveal .slides section {
   width: 93%;
 }
+
 
 /*********************************************
  * HEADERS
