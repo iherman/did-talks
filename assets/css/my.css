@@ -1,11 +1,4 @@
-@import url('fonts.css');
-
-.reveal {
-    /* font-family: 'Local Open Sans', sans-serif; */
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
-}
-
+  
 .slide p {
     font-size: 120%;
 }
@@ -16,7 +9,6 @@
 .reveal h5,
 .reveal h6 {
     text-transform: none !important;
-    font-family: 'Local Quicksand', sans-serif;
     letter-spacing: 0em !important;
 }
 
@@ -36,9 +28,6 @@
     font-size: 80%;
 }
 
-/* .reveal .slides ul, .reveal .slides ol, .reveal .slides p {
-    font-size: 1.2em;
-} */
 
 .reveal .slides section.subtitle p {
     transform: translateY(1.8em); 
@@ -48,11 +37,6 @@
     font-family: 'Local Quicksand', sans-serif;
     font-size: 3em;
 }
-
-/* 
-.reveal .slides section.subsection p {
-    font-size: 3em !important;
-} */
 
 .reveal .slides section:not(.title) {
     text-align: left;
