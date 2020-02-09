@@ -29,14 +29,14 @@
 			<div class="slides">
 				<section class="title" >
 					<div style='transform: translateY(3em)'>
-						<h1>Decentralized Identifiers <br/>(DID-s)</h1>
+						<h1>Decentralized Identifiers <br/>(DIDs)</h1>
 						<h2>Ivan Herman, ivan@w3.org</h2>	
 					</div>
 				</section>
 
 				<!-- ================================== -->
 				<section>
-					<section class='subtitle'>
+					<section class='subtitle subsection'>
 						<p>Introduction</p>
 					</section>
 
@@ -66,8 +66,8 @@
 
 				<!-- ================================== -->
 				<section>
-					<section class='subtitle'>
-						<p>What are the problems?</p>
+					<section class='subtitle subsection'>
+						<p style="transform:translateY(1.2em)">What are the problems?</p>
 					</section>
 
 					<section>
@@ -192,20 +192,19 @@
 								- *but:* not resolvable, not verifiable
 						</textarea>
 					</section>
-
 					<section class='subtitle'>
-						<p>No identifiers display all those characteristics!</p>
+						<p style="transform:translateY(1em)">No identifiers display all those characteristics!</p>
 					</section>
 				</section>
 
 				<!-- ======================================== -->
 
-				<section data-markdown>
+				<section data-markdown> 
 					<textarea data-template>
-						## Goals  of DID-s
+						## Goals  of DIDs
 
 						- *Ease of creation*
-						    - it should be quick and “cheap” to create possibly thousands of DID-s
+						    - it should be quick and “cheap” to create possibly thousands of DIDs
 						- *Decentralized*
 							- do not depend on centralized registries, identity providers, authorities, etc. 
 							- the DID has a sovereign controller:
@@ -216,7 +215,7 @@
 
 				<section data-markdown>
 					<textarea data-template>
-						## Goals of DID-s
+						## Goals of DIDs
 
 						- *Persistent*
 						    - once created, it is permanently assigned to the subject
@@ -232,12 +231,12 @@
 				</section>
 
 				<section>
-					<section class='subtitle'>
-						<p>High level view on DID-s</p>
+					<section class='subtitle subsection'>
+						<p style="transform:translateY(1.2em)">High level view on DIDs</p>
 					</section>
 
 					<section>
-						<h2>High level view: DID-s and DID Documents</h2>
+						<h2>High level view: DIDs and DID Documents</h2>
 						<figure class='svg' style="transform: translateY(-4.2em);">
 							<img src="../../assets/images/DIDs_and_DID_Documents.svg" width="1100"/>
 						</figure>
@@ -246,7 +245,7 @@
 						</figure>
 					</section>
 
-					<section  data-markdown>
+					<section data-markdown>
 						<textarea data-template>
 							## “Global, distributed, key-value database”
 
@@ -260,7 +259,7 @@
 						</textarea>
 					</section>
 
-					<section  data-markdown>
+					<section data-markdown>
 						<textarea data-template>
 							## DID Documents
 
@@ -278,7 +277,7 @@
 						</textarea>
 					</section>
 
-					<section  data-markdown>
+					<section data-markdown>
 						<textarea data-template>
 							## DIDs and DID Documents are closely coupled
 
@@ -289,7 +288,7 @@
 						</textarea>
 					</section>
 
-					<section  data-markdown>
+					<section data-markdown>
 						<textarea data-template>
 							## Serialization of DID Documents
 
@@ -307,7 +306,7 @@
 
 				<section>
 
-					<section class='subtitle'>
+					<section class='subtitle subsection'>
 						<p>Some use cases</p>
 					</section>
 
@@ -417,7 +416,7 @@
 
 				<!-- =========================================== -->
 				<section>
-					<section class='subtitle'>
+					<section class='subtitle subsection'>
 						<p>Anatomy of DIDs</p>
 					</section>
 
@@ -457,7 +456,7 @@
 	
 							- DID are within the IETF/W3C world
 								- tools, libraries may be used to manage them
-								- existing specifications automatically apply to DID-s:
+								- existing specifications automatically apply to DIDs:
 									- "`<a href='did:btcr:xyv2-xzpq-q9wa-p7t'>abcd</a>`" is valid HTML
 									- "`<did:btcr:xyv2-xzpq-q9wa-p7t> a rdf:Class.`" is a valid RDF Turtle statement
 							- _DIDs are part of the Web_
@@ -539,8 +538,8 @@
 				<!-- ============================================= -->
 
 				<section>
-					<section class='subtitle'>
-						<p>Anatomy of DID Documents</p>
+					<section class='subtitle subsection'>
+						<p style="transform:translateY(1.2em)">Anatomy of DID Documents</p>
 					</section>
 
 					<section data-markdown>
@@ -696,18 +695,11 @@
 					</dl>
 				</section>
 				<section class='subtitle'>
-					<p>Thank you for your attention!</p>
+					<p style="transform:translateY(1em)">Thank you for your attention!</p>
 				</section>
 			</div>
 		</div>
 
-		<!-- Adding a script to print images/svg properly through the alternative png files -->
-		<script>
-			var query = window.location.search.match( /print-pdf/gi ) ? 'figure.svg' : 'figure.svg_print';
-			document.querySelectorAll(query).forEach((item) => {
-					item.parentNode.removeChild(item);
-			})
-		</script>
 
 		<script src="../../reveal/lib/js/head.min.js"></script>
 		<script src="../../reveal/js/reveal.js"></script>
@@ -738,9 +730,32 @@
 					{ src: '../../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 					{ src: '../../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
 					{ src: '../../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: '../../reveal/plugin/math/math.js', async: true },
-					{ src: '../../reveal/plugin/search.js', async: true}
+					{ src: '../../reveal/plugin/zoom-js/zoom.js', async: true },
+					{ src: '../../reveal/plugin/math/math.js', async: true }
 				]
+			});
+		</script>
+
+		<!-- Adding a script to print images/svg properly through the alternative png files -->
+
+		<script>
+			// Alternate images with SVG files for PDF print; the handling of SVG seems to create problems (new pages, for example)
+			let query = window.location.search.match( /print-pdf/gi ) ? 'figure.svg' : 'figure.svg_print';
+			document.querySelectorAll(query).forEach((item) => {
+					item.parentNode.removeChild(item);
+			});
+
+			// Add a down arrow clue for the section heading
+			document.querySelectorAll('section.subsection').forEach((item) => {
+				let figure = document.createElement('figure');
+				figure.innerHTML = '<a href="#" class="navigate-down"><img width="30" data-src="../../assets/images/arrow.png" alt="Down arrow"></a>';
+				figure.setAttribute('style','position: absolute; top:690px; left:625px');
+				item.appendChild(figure); 
+			});
+
+			// Slides in a section get a different background color (except for the section heading)
+			document.querySelectorAll('section section:not(.subsection)').forEach((item) => {
+				item.setAttribute('data-background','#f7f2d3');
 			});
 		</script>
 

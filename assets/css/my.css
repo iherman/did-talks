@@ -41,13 +41,18 @@
 } */
 
 .reveal .slides section.subtitle p {
-    transform: translateY(3em); 
+    transform: translateY(1.8em); 
     color:darkblue;
     font-size: 140%;
     text-align: center;
     font-family: 'Local Quicksand', sans-serif;
-    font-size: 2em;
+    font-size: 3em;
 }
+
+/* 
+.reveal .slides section.subsection p {
+    font-size: 3em !important;
+} */
 
 .reveal .slides section:not(.title) {
     text-align: left;
