@@ -90,13 +90,7 @@ figure {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 }
 
-.reveal section figure.svg img {
-    margin: 15px 0px;
-    border: none;
-    box-shadow: none !important ;
-    background: transparent;
-}
-
+.reveal section figure.svg img, 
 .reveal section figure.svg_print img {
     margin: 15px 0px;
     border: none;
