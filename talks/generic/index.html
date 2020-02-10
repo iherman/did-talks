@@ -40,7 +40,7 @@
 				</section>
 
 				<!-- ================================== -->
-				<section>
+				<section class='subsection-container'>
 					<section class='subtitle subsection'>
 						<p>Introduction</p>
 					</section>
@@ -70,7 +70,7 @@
 				</section>
 
 				<!-- ================================== -->
-				<section>
+				<section class='subsection-container'>
 					<section class='subtitle subsection'>
 						<p style="transform:translateY(1.2em)">What are the problems?</p>
 					</section>
@@ -235,14 +235,14 @@
 					<p style="font-size: 150%;">A DID is a self-sovereign identity, i.e., lifetime, portable, and verifiable digital identity that does not depend on any centralized authority</p>
 				</section>
 
-				<section>
+				<section class='subsection-container'>
 					<section class='subtitle subsection'>
 						<p style="transform:translateY(1.2em)">High level view on DIDs</p>
 					</section>
 
 					<section>
 						<h2>High level view: DIDs and DID Documents</h2>
-						<figure class='svg' style="transform: translateY(-2.8 em)scale(1.1);">
+						<figure class='svg' style="transform: translateY(-2.8em)scale(1.1);">
 							<img src="../../assets/images/DIDs_and_DID_Documents.svg" width="1100" alt="A unique string (DID) goes through a DID Resolution to a global, decentralized, key-value database; from this databased comes a DID document containing cryptographic materials (e.g., keys), metadata, Signature); this document is connected to an arrow going back to the DID from the database as a cryptographic verification."/>
 						</figure>
 						<figure class='svg_print'>
@@ -309,8 +309,7 @@
 
 				<!-- =============================== -->
 
-				<section>
-
+				<section class='subsection-container'>
 					<section class='subtitle subsection'>
 						<p>Some use cases</p>
 					</section>
@@ -319,7 +318,7 @@
 						<textarea data-template>
 							## There are simple ones
 
-							- Securing unique, secure, etc., identity for persons, animals, objects,…
+							- Securing unique, secure, etc., identities for persons, animals, objects,…
 								- unique and unambiguous literature references
 								- consistent semantic statements on “resources”
 								- identify objects in an internet of “things”
@@ -420,7 +419,7 @@
 				</section>
 
 				<!-- =========================================== -->
-				<section>
+				<section class='subsection-container'>
 					<section class='subtitle subsection'>
 						<p>Anatomy of DIDs</p>
 					</section>
@@ -542,7 +541,7 @@
 
 				<!-- ============================================= -->
 
-				<section>
+				<section class='subsection-container'>
 					<section class='subtitle subsection'>
 						<p style="transform:translateY(1.2em)">Anatomy of DID Documents</p>
 					</section>
@@ -758,10 +757,20 @@
 				item.appendChild(figure); 
 			});
 
+			let set_right_hand_side = 'bottom right / 8.2% 100% linear-gradient(hsl(211, 45%, 25%), hsl(205, 42%, 92%)) no-repeat';
+			let color_beige = 'radial-gradient(#f7fbfc,#f7f2d3)';
+			let color_sky   = 'radial-gradient(#f7fbfc,#add9e4)';
+
 			// Slides in a section get a different background color (except for the section heading)
-			document.querySelectorAll('section section:not(.subsection)').forEach((item) => {
-				item.setAttribute('data-background','bottom right / 8.2% 100% linear-gradient(hsl(211, 45%, 25%), hsl(205, 42%, 92%)) no-repeat, #f7f2d3');
-			});
+			let subsections = document.querySelectorAll('section.subsection-container');
+			let odd = true;
+			subsections.forEach((subsection) => {
+				let color = odd ? color_beige : color_sky;
+				odd = !odd;
+				subsection.querySelectorAll('section:not(.subsection)').forEach( (item) => {
+					item.setAttribute('data-background',`${set_right_hand_side}, ${color}`);
+				})
+			})
 		</script>
 
 		<a href="https://www.w3.org">
