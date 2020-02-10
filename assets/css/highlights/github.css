@@ -1,6 +1,7 @@
 /*
 
 github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+Modified by Ivan Herman for local use
 
 */
 
@@ -8,8 +9,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  color: #333;
-  background: #f8f8f8;
+  color:darkblue;
+  background: transparent;
+  box-shadow: 3px 3px 5px black;
 }
 
 .hljs-comment,
@@ -21,7 +23,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .hljs-keyword,
 .hljs-selector-tag,
 .hljs-subst {
-  color: #333;
+  color: darkblue /* #333 */;
   font-weight: bold;
 }
 

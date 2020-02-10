@@ -11,7 +11,8 @@
 		<!-- Viable alternatives: beige.css, -->
 		<!-- Viable alternatives: black, blood, league, but need new code highlights, change in the colors of the images, and a new version of the logo -->
 
-		<link rel="stylesheet" href="../../assets/css/highlights/atom-one-light.css">
+		<!-- <link rel="stylesheet" href="../../assets/css/highlights/atom-one-light.css"> -->
+		<link rel="stylesheet" href="../../assets/css/highlights/github.css">
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -242,7 +243,7 @@
 
 					<section>
 						<h2>High level view: DIDs and DID Documents</h2>
-						<figure class='svg' style="transform: translateY(-4.2em);">
+						<figure class='svg' style="transform: translateY(-2.8 em)scale(1.1);">
 							<img src="../../assets/images/DIDs_and_DID_Documents.svg" width="1100" alt="A unique string (DID) goes through a DID Resolution to a global, decentralized, key-value database; from this databased comes a DID document containing cryptographic materials (e.g., keys), metadata, Signature); this document is connected to an arrow going back to the DID from the database as a cryptographic verification."/>
 						</figure>
 						<figure class='svg_print'>
@@ -382,7 +383,7 @@
 
 					<section>
 						<h2>Pool of relationships</h2>
-						<figure class='svg' style="transform: translateY(-1.3em)scale(1.05);">
+						<figure class='svg' style="transform: translateY(-1.1em)scale(1.05);">
 							<img src="../../assets/images/Pool_of_Relationships.svg" width="1000" alt="Four humans connected to a Distributed Ledger of DID documents for all participants. Two figures are annotated as 'A' and 'B'; arrows connect these two with four steps (1) 'A' sems hos DID to 'B', (2) 'B' retrieves the DID document (connected to the ledger) for 'B', (3) 'B' encrypts her data using the keys of 'A', (4) 'B' sends the encrypted data to 'B'"/>
 						</figure>
 						<figure class='svg_print'>
@@ -394,7 +395,7 @@
 						<h2>Pool of relationships</h2>
 						<div class='left_media'>
 							<div>
-								<figure class='svg' style="transform: translateY(1.5em) scale(1.5)">
+								<figure class='svg' style="transform: translateY(1.4em) scale(1.6)">
 									<img src="../../assets/images/Pool_of_Relationships.svg" width="900" alt = "Four humans connected to a Distributed Ledger of DID documents for all participants. Two figures are annotated as 'A' and 'B'; arrows connect these two with four steps (1) 'A' sems hos DID to 'B', (2) 'B' retrieves the DID document (connected to the ledger) for 'B', (3) 'B' encrypts her data using the keys of 'A', (4) 'B' sends the encrypted data to 'B'"/>
 								</figure>
 								<figure class='svg_print'>
@@ -427,7 +428,7 @@
 
 					<section>
 						<h2>Reminder: URIs, URNs, URLs, …</h2>
-						<figure class='svg' style="transform: translateY(-1.2em);">
+						<figure class='svg' style="transform: translateY(-0.5em)scale(1.1);">
 							<img class='svg' src="../../assets/images/URIs_URNs_URLs.svg" width="1200" alt="Ellipse labeled as 'URI' with three contained ellipses: (a) labeled as 'URL, locate through schemes' with examples https://..., ftp://..., data://...; (b) labeled as 'URN name through namespaces', with examples urn:isbn:..., urn:uuid:..., and urn:iso:... (c) labeles as 'INFO information assets through namespaces, with examples info:dewey:... and info:oclnum:... "/>
 						</figure>
 						<figure class='svg_print'>
@@ -437,7 +438,7 @@
 
 					<section>
 						<h2>DID is a new type of URI</h2>
-						<figure class='svg'>
+						<figure class='svg' style="transform: translateY(1em)translateX(1em)scale(1.2);">
 							<img class='svg' src="../../assets/images/DID_uri.svg" width="1200" alt="The center of the figures is the string 'did:xyz:abcde1234567/path#fragment'. The string is surrounded by four annotations: (a) (pointing at 'did') 'Fixed string 'this is a DID'' (b) (pointing at 'xyx') 'Method name, eg, 'sov', 'bctr', 'key'' (c) (pointing at 'abcde1234567') 'Method specific identifier' and (d) (pointing at 'path#fragment') 'Path and fragment, just like a URI, with a method specific interpretation'."/>
 						</figure>
 						<figure class='svg_print'>
@@ -447,7 +448,7 @@
 
 					<section>
 						<h2>DID is a new type of URI</h2>
-						<figure class='svg' style="transform: translateY(-1.2em);">
+						<figure class='svg' style="transform: translateY(-0.5em)scale(1.1); ">
 							<img class='svg' src="../../assets/images/DIDs_URIs_URNs_URLs.svg" width="1200" alt="Ellipse labeled as 'URI' with four contained ellipses: (a) labeled as 'URL, locate through schemes' with examples https://..., ftp://..., data://...; (b) labeled as 'URN name through namespaces', with examples urn:isbn:..., urn:uuid:..., and urn:iso:... (c) labeled as 'INFO information assets through namespaces, with examples info:dewey:... and info:oclnum:...; (d) labeled as 'DID identify through methods with example did:sov:..., did:bcbtr:... and did:key:...'. The ellipse labeled as DID is in the centre of the containing one." />
 						</figure>
 						<figure class='svg_print'>
@@ -505,11 +506,11 @@
 						<textarea data-template>
 							## Examples for special purpose methods
 	
-							- `did:key:z6Mki7KaCeTufKQ6…jY8QLPNEv28PhP1PHF35btNN`
+							- `did:key:z6Mki7KaCeTufKQ6…NEv28PhP1PHF35btNN`
 								- can be used for single, ephemeral interactions (e.g., IoT)
 								- the method specific identifier is an encoded public cryptographic key
 								- the DID documents aren’t stored; they are generated on demand
-							- `did:git:625557b5a9cdf399205820a2a716da897e2f9657`
+							- `did:git:625557b5a9cdf3…a2a716da897e2f9657`
 								- solves the git commit contributor problems without relying on a centralized GPG keychain
 								- the method specific identifier is generated from the “Git Commit ID”, as well as the contributors’ public keys
 								- DIDs identify a git repository as well as the contributors of the repository 
@@ -520,7 +521,7 @@
 						<textarea data-template>
 							## Examples for special purpose methods
 	
-							- `did:peer:1zQmZMygzYqNwU6Uhmewx...p5S4HLSwwgf2aiKZuwa`
+							- `did:peer:1zQmZMygzYqNwU6Uhmewx…LSwwgf2aiKZuwa`
 								- interaction among a fixed number of “peers”, e.g., business relationships
 								- the method specific identifier is generated from the DID document
 									- the document stores the user’s public key(s)
@@ -661,7 +662,7 @@
 							{
 								"service":[{
 									"type":"identityHub",
-									"publicKey":"did:example:12345#keys-2"
+									"publicKey":"did:example:12345#keys-2",
 									"serviceEndpoint":"https://example.org/identityservice"
 								},{
 									"type":"PhotoStreamService",
@@ -760,12 +761,12 @@
 
 			// Slides in a section get a different background color (except for the section heading)
 			document.querySelectorAll('section section:not(.subsection)').forEach((item) => {
-				item.setAttribute('data-background','bottom right / 3.6em 100% linear-gradient(hsl(211, 45%, 25%), hsl(205, 42%, 92%)) no-repeat, #f7f2d3');
+				item.setAttribute('data-background','bottom right / 8.2% 100% linear-gradient(hsl(211, 45%, 25%), hsl(205, 42%, 92%)) no-repeat, #f7f2d3');
 			});
 		</script>
 
 		<a href="https://www.w3.org">
-			<img style="position: absolute; top: 10px; right: 10px; border: 0; width:8%" src="../../assets/images/w3c-logo.svg">
+			<img style="position: absolute; top: 10px; right: 10px; border: 0; width:7%" src="../../assets/images/w3c-logo.svg">
 		</a>
 	</body>
 </html>
