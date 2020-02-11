@@ -698,6 +698,7 @@
 						<dd><a href="https://iherman.github.io/did-talks/talks/generic/">https://iherman.github.io/did-talks/talks/generic/</a></dd>
 					</dl>
 				</section>
+				
 				<section class='subtitle'>
 					<p style="transform:translateY(1em)">Thank you for your attention!</p>
 				</section>
@@ -707,43 +708,25 @@
 
 		<script src="../../reveal/lib/js/head.min.js"></script>
 		<script src="../../reveal/js/reveal.js"></script>
+		<script src="../../assets/js/w3c.js"></script>
 
 		<!-- Adding a script to print images/svg properly through the alternative png files -->
-
 		<script>
-			// Alternate images with SVG files for PDF print; the handling of SVG seems to create problems (new pages, for example)
-			let query = window.location.search.match( /print-pdf/gi ) ? 'figure.svg' : 'figure.svg_print';
-			document.querySelectorAll(query).forEach((item) => {
-					item.parentNode.removeChild(item);
-			});
+			// makes use of the svg/png alternatives for printing
+			switch_svg_png();
 
 			// Add a down arrow clue for the section heading
-			document.querySelectorAll('section.subsection').forEach((item) => {
-				let figure = document.createElement('figure');
-				figure.innerHTML = '<a href="#" class="navigate-down"><img width="30" data-src="../../assets/images/arrow.png" alt="Down arrow"></a>';
-				figure.setAttribute('style','position: absolute; top:690px; left:625px');
-				item.appendChild(figure); 
+			add_section_arrow();
+
+			// Add an alternate color to the subsections
+			advanced_background_setting({
+				logo_width  : 86,
+				logo_url    : '../../assets/images/w3c-logo.svg',
+				basic_color : 'white',
+				alt_color_1 : 'radial-gradient(#f7fbfc,#f7f2d3)',
+				alt_color_2 : 'radial-gradient(#f7fbfc,#add9e4)',
 			});
-
-			// Background setting
-			let background_logo     = 'top 10px right 15px url(../images/w3c-logo.svg) no-repeat'
-            let set_right_hand_side = 'bottom right / 116px 100% linear-gradient(hsl(211, 45%, 25%), hsl(205, 42%, 92%)) no-repeat';
-			let color_beige = 'radial-gradient(#f7fbfc,#f7f2d3)';
-			let color_sky   = 'radial-gradient(#f7fbfc,#add9e4)';
-
-			// Slides in a section get a different background color (except for the section heading)
-			let subsections = document.querySelectorAll('section.subsection-container');
-			let odd = true;
-			subsections.forEach((subsection) => {
-				let color = odd ? color_beige : color_sky;
-				odd = !odd;
-				subsection.querySelectorAll('section:not(.subsection)').forEach( (item) => {
-					item.setAttribute('data-background',`${set_right_hand_side}, ${color}`);
-				})
-			})
 		</script>
-
-
 
 		<script>
 			Reveal.initialize({
@@ -776,6 +759,5 @@
 				]
 			});
 		</script>
-
 	</body>
 </html>
