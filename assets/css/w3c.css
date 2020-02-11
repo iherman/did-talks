@@ -12,10 +12,15 @@
 
 /*********************************************
  * GLOBAL STYLES
+               bottom right / 8.2% 100% linear-gradient(hsl(211, 45%, 25%), hsl(205, 42%, 92%)) no-repeat,
+
  *********************************************/
 body {
-  background: bottom right / /* 9em */ 8.2% 100% linear-gradient(hsl(211, 45%, 25%), hsl(205, 42%, 92%)) no-repeat,  #fff
+  background: top 10px right 15px url(../images/w3c-logo.svg) no-repeat,
+              bottom right / 116px 100% linear-gradient(hsl(211, 45%, 25%), hsl(205, 42%, 92%)) no-repeat,
+              #fff;
 }
+  
 
 .reveal {
   font-family: 'My Gill Sans', sans-serif;
