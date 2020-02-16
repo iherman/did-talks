@@ -11,9 +11,7 @@
 }
 
 /*********************************************
- * GLOBAL STYLES
-               bottom right / 8.2% 100% linear-gradient(hsl(211, 45%, 25%), hsl(205, 42%, 92%)) no-repeat,
-
+ 
  *********************************************/
 body {
   background: top 10px right 15px url(../images/w3c-logo.svg) no-repeat,
