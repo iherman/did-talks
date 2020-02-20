@@ -437,10 +437,10 @@
 					<section>
 						<h2>DID is a new type of URI</h2>
 						<figure class='svg' style="transform: translateY(1em)translateX(1em)scale(1.2);">
-							<img class='svg' src="../../assets/images/DID_uri.svg" width="1200" alt="The center of the figures is the string 'did:xyz:abcde1234567/path#fragment'. The string is surrounded by four annotations: (a) (pointing at 'did') 'Fixed string 'this is a DID'' (b) (pointing at 'xyx') 'Method name, eg, 'sov', 'bctr', 'key'' (c) (pointing at 'abcde1234567') 'Method specific identifier' and (d) (pointing at 'path#fragment') 'Path and fragment, just like a URI, with a method specific interpretation'."/>
+							<img class='svg' src="../../assets/images/DID_uri_simplified.svg" width="1200" alt="The center of the figures is the string 'did:xyz:abcde1234567'. The string is surrounded by three annotations: (a) (pointing at 'did') 'Fixed string 'this is a DID'' (b) (pointing at 'xyx') 'Method name, eg, 'sov', 'bctr', 'key'', and (c) (pointing at 'abcde1234567') 'Method specific identifier'."/>
 						</figure>
 						<figure class='svg_print'>
-							<img src="../../assets/images/DID_uri.png" width="800"/>
+							<img src="../../assets/images/DID_uri_simplified.png" width="800"/>
 						</figure>
 					</section>
 
@@ -552,7 +552,7 @@
 	
 							- Uniquely related to the DID _subject_, i.e., the entity identified by the DID
 								- the document must contain the DID itself
-							- May include a separate DID for the _controller_
+							- Includes a separate DID for the _controller_
 								- identifies an entity that “in charge” of the DID document
 							- Expresses public cryptographic keys and other verification methods
 							- May include a separate “proof” section (typically a signature)
@@ -588,6 +588,38 @@
 
 					<section data-markdown>
 						<textarea data-template>
+							## DID Locators (a.k.a. DID URLs)
+
+							- DIDs identify the DID subject
+							- DID URLs identify a _resource_ to be located (typically part of a DID document)
+								- are based on a DID
+								- they act as _locators_, although the exact details of dereferencing may depend on the methods
+						</textarea>
+					</section>
+
+					<section>
+						<h2>Remember?</h2>
+						<figure class='svg' style="transform: translateY(1em)translateX(1em)scale(1.2);">
+							<img class='svg' src="../../assets/images/DID_uri_simplified.svg" width="1200" alt="The center of the figures is the string 'did:xyz:abcde1234567'. The string is surrounded by three annotations: (a) (pointing at 'did') 'Fixed string 'this is a DID'' (b) (pointing at 'xyx') 'Method name, eg, 'sov', 'bctr', 'key'', and (c) (pointing at 'abcde1234567') 'Method specific identifier'."/>
+						</figure>
+						<figure class='svg_print'>
+							<img src="../../assets/images/DID_uri_simplified.png" width="800"/>
+						</figure>
+					</section>
+
+					<section>
+						<h2>DID URLs</h2>
+						<figure class='svg' style="transform: translateY(-0.7em)translateX(-1em)scale(1.2);">
+							<img class='svg' src="../../assets/images/DID_uri_DID_url.svg" width="1200" alt="The center of the figures is the string 'did:xyz:abcde1234567/path?query=qrst#fragment'. The string is surrounded by two annotations: (a) (pointing at part of the string until '/') 'DID' (b) (pointing at the rest) ''Path', 'query', and 'fragment' (just like a URI) with a method specific interpretation'."/>
+						</figure>
+						<figure class='svg_print'>
+							<img src="../../assets/images/DID_uri_DID_url.png" width="800"/>
+						</figure>
+					</section>
+
+
+					<section data-markdown>
+						<textarea data-template>
 							## Public Keys
 
 							- List of various public keys
@@ -614,7 +646,7 @@
 							## Authentication
 
 							- Keys that can be used for the _authentication_ of the controller:
-								- can refer to a key listed separately in publicKey
+								- can refer to a key listed separately in `publicKey` (via a DID URL)
 								- can include a full key that can be used for authentication only
 	
 							```
@@ -697,6 +729,27 @@
 						<dt>These slides</dt>
 						<dd><a href="https://iherman.github.io/did-talks/talks/generic/">https://iherman.github.io/did-talks/talks/generic/</a></dd>
 					</dl>
+				</section>
+				<section>
+					<h2>Some more documents that should come</h2>
+					<dl>
+						<dt>Registry</dt>
+						<dd>Registry for various terms: crypto terms, methods, additional terms,…</dd>
+						<dt>Rubric</dt>
+						<dd>Documenting what criteria to look for when choosing a specific method</dd>
+						<dt>Implementation guide</dt>
+					</dl>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Today’s Status
+
+						- Draft specification was developed in a W3C CG
+						- Working Group started in September 2019
+						- Plan is to be technically ready (i.e., Candidate Recommendation) by summer 2020
+						- Recommendation should be available by summer 2021
+					</textarea>
 				</section>
 
 				<section class='subtitle'>
