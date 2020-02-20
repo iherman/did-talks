@@ -44,10 +44,13 @@ function advanced_background_setting(settings) {
     const background_logo   = `top 10px right 15px url(${settings.logo_url}) no-repeat`;
     const right_band        = `bottom right / ${2*15 + settings.logo_width}px 100% linear-gradient(hsl(211, 45%, 25%), hsl(205, 42%, 92%)) no-repeat`;
     const common_background = `${background_logo},${right_band}`;
+    const background_attribute = 'data-background';
     
     const slides = document.querySelector('div.slides');
     slides.querySelectorAll('section').forEach( (slide) => {
-        slide.setAttribute('data-background',`${common_background}, ${settings.basic_color}`);
+        if (slide.hasAttribute(background_attribute) === false) {
+            slide.setAttribute(background_attribute,`${common_background}, ${settings.basic_color}`);
+        }
     });
 
     // Slides in a section get a different background color (except for the section heading)
@@ -57,7 +60,7 @@ function advanced_background_setting(settings) {
         let color = odd ? settings.alt_color_1 : settings.alt_color_2;
         odd = !odd;
         subsection.querySelectorAll('section:not(.subsection)').forEach( (item) => {
-            item.setAttribute('data-background',`${common_background}, ${color}`);
+            item.setAttribute(background_attribute,`${common_background}, ${color}`);
         })
     })
 }
