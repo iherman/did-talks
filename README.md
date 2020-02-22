@@ -1,6 +1,6 @@
 # Talks on Decentralized Identifiers (DIDs)
 
-My own talks about the [Decentralized Identities (DIDs)](https://www.w3.org/TR/did-core/) technologies, as defined by the [World Wide Web Consortium (W3C)](https://www.w3.org/).
+This is a repository for my talks on Decentralized Identities (DIDs), a technical specification developed in the [W3C DID Working Group](https://www.w3.org/2019/did-wg/), that I am part of as part of my job at the [Worldwide Web Consortium (W3C)](https://www.w3.org).
 
 The talks are in HTML, using the [reveal.js toolkit](https://revealjs.com/). The talks themselves are listed in [./talks](https://iherman.github.io/talks/).
 
