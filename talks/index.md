@@ -1,6 +1,6 @@
 # Talks on Decentralized Identifiers (DIDs)
 
-This is a list of my talks on Decentralized Identities (DIDs), a technical specification developed in the [W3C DID Working Group](https://www.w3.org/2019/did-wg/), that I am part of as part of my job at the [Worldwide Web Consortium (W3C)](https://www.w3.org).
+This is a list of my talks on Decentralized Identities (DIDs), a technical specification developed in the [W3C DID Working Group](https://www.w3.org/2019/did-wg/). I am the W3C staff contact if this group as part of my job at the [Worldwide Web Consortium (W3C)](https://www.w3.org).
 
 > The slides are currently in development!!!
 
