@@ -54,13 +54,26 @@ function advanced_background_setting(settings) {
     });
 
     // Slides in a section get a different background color (except for the section heading)
-    const subsections = document.querySelectorAll('section.subsection-container');
+    const subsections = document.querySelectorAll('section.subsection');
     let odd = true;
+    // A 'subsection' is a series of slides between two slides that are marked as 'subsections'
     subsections.forEach((subsection) => {
         let color = odd ? settings.alt_color_1 : settings.alt_color_2;
         odd = !odd;
-        subsection.querySelectorAll('section:not(.subsection)').forEach( (item) => {
-            item.setAttribute(background_attribute,`${common_background}, ${color}`);
-        })
+        let nextSlide = subsection.nextSibling;
+        while(nextSlide !== null) {
+            if (nextSlide.tagName === 'SECTION') {
+                const classes = nextSlide.getAttribute('class');
+                console.log(`>>> ${nextSlide.className}`);
+                if (nextSlide.className.split(' ').includes('subsection')) {
+                    return;
+                } else {
+                    if (!nextSlide.className.split(' ').includes('subtitle')) {
+                        nextSlide.setAttribute(background_attribute,`${common_background}, ${color}`);
+                    }
+                }
+            } 
+            nextSlide = nextSlide.nextSibling;
+        }
     })
 }
