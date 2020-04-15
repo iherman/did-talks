@@ -1,0 +1,675 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Decentralized Identifiers</title>
+
+		<link rel="stylesheet" href="../../reveal/css/reveal.css">
+		<link rel="stylesheet" href="../../assets/css/w3c.css" id="theme">
+		<!-- Viable alternatives: beige.css, -->
+		<!-- Viable alternatives: black, blood, league, but need new code highlights, change in the colors of the images, and a new version of the logo -->
+
+		<link rel="stylesheet" href="../../assets/css/highlights/github.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal/css/print/pdf.css' : '../../reveal/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<link rel="stylesheet" href="../../assets/css/my.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section class="title" >
+					<div style='transform: translateY(3em)'>
+						<h1>Decentralized Identifiers <br/>(DIDs)</h1>
+						<h2>Presentation held for W3C Evangelists, on 2020-04-27</h2>
+						<h2>Ivan Herman, <a href="mailto:ivan@w3.org">ivan@w3.org</a></h2>	
+					</div>
+				</section>
+
+				<!-- ================================== -->
+				<!-- <section class='subsection-container'> -->
+				<section class='subtitle subsection' data-background='../../assets/images/enter.jpg'>
+					<p style="transform:translateX(0.5em)translateY(2em); background: hsla(0, 0%, 98%, 0.5);">Introduction</p>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Importance of identifiers in a digital world
+
+						- It is increasingly important to identify persons, concepts, things…
+							- any reasoning, control, associations, etc., of resources rely on this ability
+						- The digital economy relies on proper identification to combine information from different sources
+							- it is vital that identifiers are unique 
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Globally unique identifiers are all around us!
+
+						- They are becoming ubiquitous:
+							- persons
+							- companies, institutions,…
+							- books, magazines,…
+							- retail items
+							- genes, proteins, viruses,…
+							- stars, galaxies,…
+							- vehicles, airplanes,…
+							- intelligent home devices, Internet/Web of Things,…
+					</textarea>
+				</section>
+
+				<!-- </section> -->
+
+				<!-- ================================== -->
+				<!-- <section class='subsection-container'> -->
+				<section class='subtitle subsection' data-background='../../assets/images/problems.jpg'>
+					<p style="transform:translateX(0.8em)translateY(1.2em); background: hsla(0, 0%, 98%, 0.5);">What are the problems?</p>
+				</section>
+
+				<section>
+						<h2>A typical experience</h2>
+
+						<p>Consider these two scholarly references:</p>
+						<blockquote style="font-size: 70%;">
+							<ul>
+								<li>
+									Tomislav Strinić, Damir Buković, Ljubomir Pavelić, Josip Fajdić, Ivan Herman, Ivica Stipić, Ivan Palada  &amp; Ivana Hirš, “Anthropological and clinical characteristics in adolescent women with dysmenorrhea”. Collegium antropologicum, 27(2), (2003).
+								</li>
+								<li>
+									Ivan Herman, Markus Gylling, “Bridging the Web and Digital Publishing”, The Journal of Electronic Publishing, (2015).
+								</li>
+							</ul>
+						</blockquote>
+
+						<ul>
+							<li>Only one of the two publications is mine…</li>
+							<li>The name is not enough; you need a <em>unique personal identification</em> to avoid problems with, in this case, homonyms</li>
+							<li>This has become even more important in a networked, digital world</li></li>
+						</ul>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Of course, I do have identifiers
+
+						- ivan@w3.org
+						- ivan@ivan-herman.net
+						- https://www.w3.org/People/Ivan/
+						- https://www.ivan-herman.net/
+						- 0000-0003-0782-2704 (ORCID)
+						- 89df9321-bf5c-4237-aabc-1f8f202ab5c6 (UUID)
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## There is a need for many identifiers!
+
+						- One person may have to have many different identifiers, depending on the person’s various facets in life
+							- there should be a _very easy_ way to create as many unique identifiers as needed!
+						- Are the aforementioned identifiers really the right ones?
+							- note that most of them are created for another purpose (email, personal information site) and are “just” used as identifiers…
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Problems with current identifiers
+
+						- *Ease of creation*
+							- https://www.ivan-herman.net depends on buying a host name
+							- ivan@w3.org is not meant to be an identifier, and an email address is not “cheap”
+						- *Decentralized*
+							- https://www.ivan-herman.net depends on a single point of failure; what happens if the hosting site disappears?
+							- 0000-0003-0782-2704 depends on the ORCID database. What happens if it is discontinued, hacked, etc?
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Problems with current identifiers
+
+						- *Persistent*
+							- When I leave the W3C then ivan@w3.org disappears… 
+							- If I do not pay for the `ivan-herman.net` domain any more, the URL disappears…
+						- *Resolvable*
+							- How can I get more information on what 0000-0003-0782-2704 identifies?
+						- *(Cryptographically) Verifiable*
+							- What about https://www.ivan-herman.com? How can one prove that this domain is _**not**_ referring to me?
+							- What happens if I stop paying for the domain and somebody else buys it?
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Identifiers may fulfill several requirements
+
+						- HTTPS URIS are:
+							- resolvable
+							- verifiable by a human and through HTTPS and certificates
+							- *but:* centralized, not persistent, complex to create
+						- ORCID numbers are:
+							- persistent (while ORCID is around, that is), easy to create
+							- verifiable by a human but not cryptographically 
+							- *but:* centralized, only resolvable by turning them into a special URL
+						- UUID-s are
+							- persistent, decentralized, easy to create
+							- *but:* not resolvable, not verifiable
+					</textarea>
+				</section>
+				<section class='subtitle in_subsection'>
+					<p style="transform:translateY(1em)">No identifiers display all those characteristics!</p>
+				</section>
+				<!-- </section> -->
+
+				<!-- ======================================== -->
+
+				<section data-markdown class='not_in_subsection'> 
+					<textarea data-template>
+						## Goals  of DIDs
+
+						- *Ease of creation*
+						    - it should be quick and “cheap” to create possibly thousands of DIDs
+						- *Decentralized*
+							- do not depend on centralized registries, identity providers, authorities, etc. 
+							- the DID has a sovereign controller:
+						        - the entity identified by the DID (the subject), or
+						        - whoever else who has the privilege to control the DID (e.g., the owner of a dog “controls” the DID identifying the dog)
+					</textarea>
+				</section>
+
+				<section data-markdown class='not_in_subsection'>
+					<textarea data-template>
+						## Goals of DIDs
+
+						- *Persistent*
+						    - once created, it is permanently assigned to the subject
+						- *Resolvable*
+						    - it is possible to find out basic set of information on the subject
+						- *Cryptographically verifiable*
+						    - there is a mechanism to cryptographically prove that it indeed identifies a specific subject (possibly controlled by a separate controller) and nothing else
+					</textarea>
+				</section>
+
+				<section class='subtitle not_in_subsection'>
+					<p style="font-size: 150%;">A DID is a self-sovereign identity, i.e., lifetime, portable, and verifiable digital identity that does not depend on any centralized authority</p>
+				</section>
+
+				<!-- <section class='subsection-container'> -->
+				<section class='subtitle subsection'  data-background='../../assets/images/birds_eye.jpg'> 
+					<p style="transform:translateX(0.5em)translateY(1.2em); background: hsla(0, 0%, 98%, 0.5);">High level view on DIDs</p>
+				</section>
+
+				<section>
+					<h2>High level view: DIDs and DID Documents</h2>
+					<figure class='svg' style="transform: translateY(-2.8em)scale(1.1);">
+						<img src="../../assets/images/DIDs_and_DID_Documents.svg" width="1100" alt="A unique string (DID) goes through a DID Resolution to a global, decentralized, key-value database; from this databased comes a DID document containing cryptographic materials (e.g., keys), metadata, Signature); this document is connected to an arrow going back to the DID from the database as a cryptographic verification."/>
+					</figure>
+					<figure class='svg_print'>
+						<img src="../../assets/images/DIDs_and_DID_Documents.png" width="800"/>
+					</figure>
+				</section>
+
+				<section data-markdown data-notes='"Ephemeral" means that it is all right to re-create new ID-s if needed (eg, changing crypto keys for an intelligent device)'>
+					<textarea data-template>
+						## “Global, distributed, key-value database”
+
+						- There may be several of those!
+							- in the DID world, the term _method_ is used for the different approaches
+						- Different methods can have very different characteristics
+							- May be based on distributed ledgers (generic or specialized)
+							- DID documents stored may be on specialized sites (e.g., github)
+							- May be ephemeral DIDs with lighter requirements (e.g., on an intelligent device)
+						- The choice depends on the relative importance of the various requirements for a specific usage
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## DID Documents
+
+						- Contain cryptographic information related to the subject (and controller) of the DID 
+							- verify the control of the DID document, i.e., its authenticity
+							- trusted communication  
+							- the DID documents may be signed 
+							- information about, e.g., key revocations
+						- May also include other types of data related to the subject
+							- reference to a Web site
+							- various services
+							- etc.
+						- May or may not physically “exist” somewhere in the database 
+							- some methods generate them on-the-fly
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## DIDs and DID Documents are closely coupled
+
+						- DIDs have the right characteristics through the DID Document
+							- DID documents are the “representation data and metadata” of a DID in the Web architecture
+						- A DID Document is tightly bound to the DID it “describes”
+						- DID+DID Document may be also used as a decentralized cryptographic keychain for various cryptography applications
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Serialization of DID Documents
+
+						- DID Documents are defined as an abstract data model
+						- Can be serialized as:
+							- JSON
+							- JSON-LD
+							- CBOR
+							- other serializations may come to the fore
+					</textarea>
+				</section>
+				<!-- </section> -->
+
+				<!-- =============================== -->
+
+				<!-- <section class='subsection-container'> -->
+				<section class='subtitle subsection' data-background='../../assets/images/use_cases.jpg'>
+					<p style="transform:translateX(0.8em)translateY(1.2em); background: hsla(0, 0%, 98%, 0.5);">Some use cases</p>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## There are simple ones
+
+						- Securing unique, secure, etc., identities for persons, animals, objects,…
+							- unique and unambiguous literature references
+							- consistent semantic statements on “resources”
+							- identify objects in an internet of “things”
+							- etc.
+						- DID usage is often bound to Verifiable Credentials
+							- e.g., life-long credential proving a University Degree, identified with a DID
+							- there are discussions on using DID+VC experimentally as a tool for a COVID-19 proximity checking apps
+					</textarea>
+				</section>
+
+				<section>
+					<h2>Find information on purchased goods</h2>
+					<figure class='svg' style="transform: translateY(-2.4em)scale(0.9);">
+						<img src="../../assets/images/Purchased_Goods.svg" width="1100" alt="shopping cart with various goods (cloths, books, shoes, camera); the camera has a DID and there is a four step process connecting that DID with a mobile: (1) get hold of the DID, (2) resolve the DID document (3) Verify the DID (4) follow a service refernece to get information"/>
+					</figure>
+					<figure class='svg_print'>
+						<img src="../../assets/images/Purchased_Goods.png" width="800"/>
+					</figure>
+				</section>
+
+				<section>
+					<h2>Find information on purchased goods</h2>
+					<div class='left_media'>
+						<div>
+							<figure class='svg'  style="transform: translateY(1.2em) scale(1.3)">
+								<img src="../../assets/images/Purchased_Goods.svg" width="900" alt="shopping cart with various goods (cloths, books, shoes, camera); the camera has a DID and there is a four step process connecting that DID with a mobile: (1) get hold of the DID, (2) resolve the DID document (3) Verify the DID (4) follow a service refernece to get information" />
+							</figure>
+							<figure class='svg_print'>
+								<img src="../../assets/images/Purchased_Goods.png" width="800"/>
+							</figure>		
+						</div>
+						<ul>
+							<li>It is very important that:
+								<ul>
+									<li>the identification is unique and persistent</li>
+									<li>the information has not been tampered with</li>
+								</ul>
+							</li>
+							<li>
+								The same mechanism can be used for constituent parts of goods but the information can remain fully decentralized
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				<section>
+					<h2>Pool of relationships</h2>
+					<figure class='svg' style="transform: translateY(-1.1em)scale(1.05);">
+						<img src="../../assets/images/Pool_of_Relationships.svg" width="1000" alt="Four humans connected to a Distributed Ledger of DID documents for all participants. Two figures are annotated as 'A' and 'B'; arrows connect these two with four steps (1) 'A' sems hos DID to 'B', (2) 'B' retrieves the DID document (connected to the ledger) for 'B', (3) 'B' encrypts her data using the keys of 'A', (4) 'B' sends the encrypted data to 'B'"/>
+					</figure>
+					<figure class='svg_print'>
+						<img src="../../assets/images/Pool_of_Relationships.png" width="800"/>
+					</figure>
+				</section>
+
+				<section>
+					<h2>Pool of relationships</h2>
+					<div class='left_media'>
+						<div>
+							<figure class='svg' style="transform: translateY(1.4em) scale(1.6)">
+								<img src="../../assets/images/Pool_of_Relationships.svg" width="900" alt = "Four humans connected to a Distributed Ledger of DID documents for all participants. Two figures are annotated as 'A' and 'B'; arrows connect these two with four steps (1) 'A' sems hos DID to 'B', (2) 'B' retrieves the DID document (connected to the ledger) for 'B', (3) 'B' encrypts her data using the keys of 'A', (4) 'B' sends the encrypted data to 'B'"/>
+							</figure>
+							<figure class='svg_print'>
+								<img src="../../assets/images/Pool_of_Relationships.png" width="800"/>
+							</figure>
+						</div>
+						<ul>
+							<li>
+								No need for a complex and centralized key management system
+							</li>
+							<li>
+								Both “A” and “B” may remain anonymous
+							</li>
+						</ul>
+					</div>
+				</section>
+				<!-- </section> -->
+
+				<!-- =========================================== -->
+
+				<section class='subtitle'>
+					<p>Technical dive in to DIDs</p>
+				</section>
+
+				<!-- =========================================== -->
+				<!-- <section class='subsection-container'> -->
+				<section class='subtitle subsection' data-background='../../assets/images/anatomy1.jpg'>
+					<p style="transform:translateX(0.5em)translateY(1.5em)">Anatomy of DIDs</p>
+				</section>
+
+				<section>
+					<h2>Reminder: URIs, URNs, URLs, …</h2>
+					<figure class='svg' style="transform: translateY(-0.5em)scale(1.1);">
+						<img class='svg' src="../../assets/images/URIs_URNs_URLs.svg" width="1200" alt="Ellipse labeled as 'URI' with three contained ellipses: (a) labeled as 'URL, locate through schemes' with examples https://..., ftp://..., data://...; (b) labeled as 'URN name through namespaces', with examples urn:isbn:..., urn:uuid:..., and urn:iso:... (c) labeles as 'INFO information assets through namespaces, with examples info:dewey:... and info:oclnum:... "/>
+					</figure>
+					<figure class='svg_print'>
+						<img src="../../assets/images/URIs_URNs_URLs.png" width="800"/>
+					</figure>
+				</section>
+
+				<section>
+					<h2>DID is a new type of URI</h2>
+					<figure class='svg' style="transform: translateY(1em)translateX(1em)scale(1.2);">
+						<img class='svg' src="../../assets/images/DID_uri_simplified.svg" width="1200" alt="The center of the figures is the string 'did:xyz:abcde1234567'. The string is surrounded by three annotations: (a) (pointing at 'did') 'Fixed string 'this is a DID'' (b) (pointing at 'xyx') 'Method name, eg, 'sov', 'bctr', 'key'', and (c) (pointing at 'abcde1234567') 'Method specific identifier'."/>
+					</figure>
+					<figure class='svg_print'>
+						<img src="../../assets/images/DID_uri_simplified.png" width="800"/>
+					</figure>
+				</section>
+
+				<section>
+					<h2>DID is a new type of URI</h2>
+					<figure class='svg' style="transform: translateY(-0.5em)scale(1.1); ">
+						<img class='svg' src="../../assets/images/DIDs_URIs_URNs_URLs.svg" width="1200" alt="Ellipse labeled as 'URI' with four contained ellipses: (a) labeled as 'URL, locate through schemes' with examples https://..., ftp://..., data://...; (b) labeled as 'URN name through namespaces', with examples urn:isbn:..., urn:uuid:..., and urn:iso:... (c) labeled as 'INFO information assets through namespaces, with examples info:dewey:... and info:oclnum:...; (d) labeled as 'DID identify through methods with example did:sov:..., did:bcbtr:... and did:key:...'. The ellipse labeled as DID is in the centre of the containing one." />
+					</figure>
+					<figure class='svg_print'>
+						<img src="../../assets/images/URIs_URNs_URLs.png" width="800"/>
+					</figure>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Why is it important that it is a URI
+
+						- DID are within the IETF/W3C world
+							- tools, libraries may be used to manage them
+							- existing specifications automatically apply to DIDs:
+								- "`<a href='did:btcr:xyv2-xzpq-q9wa-p7t'>abcd</a>`" is valid HTML
+								- "`<did:btcr:xyv2-xzpq-q9wa-p7t> a rdf:Class.`" is a valid RDF Turtle statement
+						- _DIDs are part of the Web_
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Examples for ledger based DIDs
+
+						- `did:btcr:xyv2-xzpq-q9wa-p7t`
+							- built “on top” of the Bitcoin blockchain
+							- the method specific identifier is generated from the bitcoin transaction position reference
+						- `did:sov:mnjkl98uipsndg2hdjdjuf7`
+							- based on a dedicated distributed ledger (Sovrin)
+							- the method specific identifier generated from either a simple UUID or the subject’s public keys
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Ledger based DIDs
+
+						- There are other methods based on generic (e.g., Ethereum), or dedicated (e.g., Veres One) ledgers
+						- They are generally meant to be general solutions for identity, usable by various applications
+					</textarea>
+				</section>
+
+				<section  data-markdown>
+					<textarea data-template>
+						## Examples for special purpose methods
+
+						- `did:key:z6Mki7KaCeTufKQ6…NEv28PhP1PHF35btNN`
+							- can be used for single, ephemeral interactions (e.g., IoT)
+							- the method specific identifier is an encoded public cryptographic key
+							- the DID documents aren’t stored; they are generated on demand
+						- `did:peer:1zQmZMygzYqNwU6Uhmewx…LSwwgf2aiKZuwa`
+							- interaction among a fixed number of “peers”, e.g., business relationships
+							- the method specific identifier is generated from the DID document
+								- the document stores the user’s public key(s)
+							- all participants have access to the DID documents
+							- information in the DID documents are used to exchange encrypted messages among peers 
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Methods in general
+						
+						- Lots of experimentation is happening, exploring different methods
+							- there is also a need to develop proper user interfaces, applications, etc, to store DIDs in personal wallets, for example
+						- We can expect to see a convergence of methods to only a few in the coming years 
+					</textarea>
+				</section>
+				<!-- </section> -->
+
+				<!-- ============================================= -->
+
+				<!-- <section class='subsection-container'> -->
+				<section class='subtitle subsection' data-background='../../assets/images/anatomy2.jpg'>
+					<p style="transform:translateX(1em)translateY(1.2em)">Anatomy of DID Documents</p>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Abstract model of a DID document
+
+						- Uniquely related to the DID _subject_, i.e., the entity identified by the DID
+						- Includes a separate DID for the _controller_
+							- identifies an entity that “in charge” of the DID document
+						- Expresses public cryptographic keys and other verification methods
+						- May include a separate “proof” section (typically a signature)
+						- May be extended to include application specific information 
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## DID Document syntaxes
+
+						- The specification defines JSON, JSON-LD, and CBOR syntaxes
+						- The information can be converted from one syntax to the other in a lossless way
+							- this means that, for example, only a subset of CBOR is used 
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Typical DID document structure
+						```
+						{
+							"id":"did:example:abcedefgh", 
+							"controller":"did:example:xyzwvy", 
+							"publicKey":[{ ... }], 
+							"authentication":[{ ... }], 
+							"proof":[{ ... }], 
+							"service":[{ ... }] 
+						}
+						```
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Public Keys
+
+						- List of various public keys
+						- Their usage is not specified: can be used for DID verification but also for any other application
+
+						```
+						{
+							"publicKey":[{
+								"id":"keys-1",
+								"type":"RsaVerificationKey2018",
+								"publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n" 
+							},{
+								"id":"keys-2",
+								"type":"Secp256k1VerificationKey2018",
+								"publicKeyHex":"02b97c30de767f084ce30...16a3263d29f1450936b71"
+							}]
+						}						  
+						```
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Authentication
+
+						- Keys that can be used for the _authentication_ of the controller:
+							- can refer to a key listed separately in `publicKey`
+							- can include a full key that can be used for authentication only
+
+						```
+						{
+							"authentication":[
+							"#keys-1",
+							{
+								"id":"#keys-3",
+								"type":"Ed25519VerificationKey2018",
+								"publicKeyBase58":"H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+							}]
+						}
+						```
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Proof
+
+						- A cryptographic proof of the integrity of the document
+
+						```
+						{
+							"proof": {
+								"type":"LinkedDataSignature2015",
+								"created":"2020-01-16T17:29:20Z",
+								"creator":"did:example:12345#keys-1",
+								"signatureValue":"QNB13Y7Q9...1tzjn4w=="
+							}
+						}						
+						```
+					</textarea>
+				</section>
+
+				<section>
+					<h2>Documents to read</h2>
+					<dl>
+						<dt>Use cases and requirements</dt>
+						<dd style='font-size:80%'><a href="https://www.w3.org/TR/did-use-cases/">https://www.w3.org/TR/did-use-cases/</a></dd>
+						<dt>Core spec</dt>
+						<dd style='font-size:80%'><a href="https://www.w3.org/TR/did-core/">https://www.w3.org/TR/did-core/</a></dd>
+						<dt>These slides</dt>
+						<dd style='font-size:80%'><a href="https://iherman.github.io/did-talks/talks/2020-evangelists/">https://iherman.github.io/did-talks/talks/2020-evangelists/</a></dd>
+						<dd style='font-size:80%'><a href="https://iherman.github.io/did-talks/talks/2020-evangelists/index.pdf">https://iherman.github.io/did-talks/talks/2020-evangelists/index.pdf</a></dd>
+					</dl>
+				</section>
+				<section>
+					<h2>Some more documents to come</h2>
+					<dl>
+						<dt>Registry</dt>
+						<dd>Registry for various terms: crypto terms, methods, additional terms,…</dd>
+						<dt>Rubric</dt>
+						<dd>Documenting what criteria to look for when choosing a specific method</dd>
+						<dt>Implementation guide</dt>
+					</dl>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Today’s Status
+
+						- Draft specification was developed in a W3C CG
+						- Working Group started in September 2019
+						- Plan is to be technically ready (i.e., Candidate Recommendation) by summer 2020
+						- Recommendation should be available by summer 2021
+					</textarea>
+				</section>
+
+				<section class='subtitle'>
+					<p style="transform:translateY(1em)">Thank you for your attention!<br><span style="font-size: 70%;">ivan@w3.org</span></p>
+				</section>
+			</div>
+		</div>
+
+
+		<script src="../../reveal/lib/js/head.min.js"></script>
+		<script src="../../reveal/js/reveal.js"></script>
+		<script src="../../assets/js/w3c.js"></script>
+
+		<!-- local settings -->
+		<script>
+			// makes use of the svg/png alternatives for printing
+			switch_svg_png();
+
+			// Add a down arrow clue for the section heading
+			// add_section_arrow();
+
+			// Add an alternate color to subsections, with the common w3c logo
+			advanced_background_setting({
+				logo_width  : 86,
+				logo_url    : '../../assets/images/w3c-logo.svg',
+				basic_color : 'white',
+				alt_color_1 : 'radial-gradient(#f7fbfc,#f7f2d3)',
+				alt_color_2 : 'radial-gradient(#f7fbfc,#add9e4)',
+			});
+		</script>
+
+		<script>
+			Reveal.initialize({
+				width: 1280,
+				height: 720,
+				margin: 0.1,
+				slideNumber: 'h/v',
+				center: false,
+				transition: 'fade',
+				fragmentInURL: true,
+				history: true,
+				// math: {
+				// 	mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+				// 	// config: 'MML_HTMLorMML'  // See http://docs.mathjax.org/en/latest/config-files.html
+				// 	config: 'TeX-AMS_HTML'
+				// },
+				dependencies: [
+					{ src: '../../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../../reveal/plugin/zoom-js/zoom.js', async: true },
+					{ src: '../../reveal/plugin/notes/notes.js', async: true },
+					// { src: '../../reveal/plugin/math/math.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>

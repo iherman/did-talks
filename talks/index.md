@@ -7,3 +7,5 @@ This is a list of my talks on Decentralized Identities (DIDs), a technical speci
 Specific talks:
 
 * [Generic Talk](./generic/): as its name suggests, not aimed at a specific presentation; it is a full slide set that can be instantiated for a specific presentation. This slide set frequently changes and evolves.
+* 2020
+    * [Introduction to DID](./2020-evangelists): talk held on the 27th of April, 2020, to the W3C Evangelists as a DID Introduction 

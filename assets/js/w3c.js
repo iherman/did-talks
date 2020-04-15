@@ -63,14 +63,15 @@ function advanced_background_setting(settings) {
         let nextSlide = subsection.nextSibling;
         while(nextSlide !== null) {
             if (nextSlide.tagName === 'SECTION') {
-                const classes = nextSlide.getAttribute('class');
-                console.log(`>>> ${nextSlide.className}`);
-                if (nextSlide.className.split(' ').includes('subsection')) {
+                const classes = nextSlide.className.split(' ');
+                if (classes.includes('subsection')) {
+                    // next subsection begins; stop this one
+                    return;
+                } else if (classes.includes('not_in_subsection')) {
+                    // this is a top level slide although does not start a new subsection
                     return;
                 } else {
-                    if (!nextSlide.className.split(' ').includes('subtitle')) {
-                        nextSlide.setAttribute(background_attribute,`${common_background}, ${color}`);
-                    }
+                    nextSlide.setAttribute(background_attribute,`${common_background}, ${color}`);
                 }
             } 
             nextSlide = nextSlide.nextSibling;
