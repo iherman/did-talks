@@ -209,9 +209,8 @@
 						    - it should be quick and “cheap” to create possibly thousands of DIDs
 						- *Decentralized*
 							- do not depend on centralized registries, identity providers, authorities, etc. 
-							- the DID has a sovereign controller:
-						        - the entity identified by the DID (the subject), or
-						        - whoever else who has the privilege to control the DID (e.g., the owner of a dog “controls” the DID identifying the dog)
+							- the DID has a sovereign controller, an the entity identified explicitly
+						        - the “subject” of the identifier may be different (e.g., the owner of a dog “controls” the DID identifying the dog)
 					</textarea>
 				</section>
 
@@ -251,8 +250,9 @@
 					<textarea data-template>
 						## “Global, distributed, key-value database”
 
+						- Also known as ”Verifiable Data Registry”
 						- There may be several of those!
-							- in the DID world, the term _method_ is used for the different approaches
+							- in the DID world, the term _method_ is used for the different approaches and/or implementations
 						- Different methods can have very different characteristics
 							- May be based on distributed ledgers (generic or specialized)
 							- DID documents stored may be on specialized sites (e.g., github)
@@ -265,14 +265,27 @@
 					<textarea data-template>
 						## DID Documents
 
-						- Contain cryptographic information related to the subject (and controller) of the DID 
-							- verify the control of the DID document, i.e., its authenticity
-							- trusted communication  
-							- the DID documents may be signed 
-							- information about, e.g., key revocations
-						- May also include other types of data related to the subject
-							- reference to a Web site
-							- various services
+						- Contain reference to the “controllers”, i.e., entities that may make changes on the DID Document
+						- Include cryptographic information related to the DID subject
+							- RSA, secp25519 elliptical curve keys, bitcoin elliptic curve keys, etc.
+							- can be expressed using JWK, or with a DID specific terms
+							- can be used for 
+								- authentication;
+								- assertions (e.g., of credentials);
+								- key agreement (e.g., to establish secure communication);
+								- capability invocation (e.g., authorization to access an API);
+								- capability delegation (e.g., delegate an API access to another authority);
+								- …
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## DID Documents (cont.)
+
+						- May contain other types of data related to the subject
+							- reference to alternative identities (“`alsoKnownAs`”)
+							- various service references (e.g., access to a service providing credentials)
 							- etc.
 						- May or may not physically “exist” somewhere in the database 
 							- some methods generate them on-the-fly
@@ -294,7 +307,7 @@
 					<textarea data-template>
 						## Serialization of DID Documents
 
-						- DID Documents are defined as an abstract data model
+						- DID Documents are defined via an abstract data model
 						- Can be serialized as:
 							- JSON
 							- JSON-LD
@@ -315,7 +328,7 @@
 					<textarea data-template>
 						## There are simple ones
 
-						- Securing unique, secure, etc., identities for persons, animals, objects,…
+						- Securing unique, secure, etc., identities for persons, animals, objects, abstract concepts…
 							- unique and unambiguous literature references
 							- consistent semantic statements on “resources”
 							- identify objects in an internet of “things”
@@ -360,7 +373,7 @@
 					</div>
 				</section>
 
-				<section data-markdown>
+				<!-- <section data-markdown>
 					<textarea data-template>
 						## Encrypted Data Vaults
 
@@ -374,7 +387,7 @@
 							- keys are bound to the owners’ (or the data item’s) DID
 						- _The data is fully under the owners’ control_
 					</textarea>
-				</section>
+				</section> -->
 
 				<section>
 					<h2>Pool of relationships</h2>
@@ -400,6 +413,9 @@
 						<ul>
 							<li>
 								No need for a complex and centralized key management system
+								<ul>
+									<li>there may be different ledgers for the various participants</li>
+								</ul>
 							</li>
 							<li>
 								Both “A” and “B” may remain anonymous
@@ -453,7 +469,7 @@
 
 				<section data-markdown>
 					<textarea data-template>
-						## Why is it important that it is a URI
+						## Why is it important that it is a URI?
 
 						- DID are within the IETF/W3C world
 							- tools, libraries may be used to manage them
@@ -552,8 +568,7 @@
 						- Includes a separate DID for the _controller_
 							- identifies an entity that “in charge” of the DID document
 						- Expresses public cryptographic keys and other verification methods
-						- May include a separate “proof” section (typically a signature)
-						- May be extended to include application specific information 
+						- May be extended to include application or method specific information 
 					</textarea>
 				</section>
 
@@ -574,9 +589,9 @@
 						{
 							"id":"did:example:abcedefgh", 
 							"controller":"did:example:xyzwvy", 
-							"publicKey":[{ ... }], 
+							"verificationMethod":[{ ... }], 
 							"authentication":[{ ... }], 
-							"proof":[{ ... }], 
+							"assertionMethod":[{ ... }], 
 							"service":[{ ... }] 
 						}
 						```
@@ -585,7 +600,7 @@
 
 				<section data-markdown>
 					<textarea data-template>
-						## DID URLs
+						## Digression: DID URLs
 
 						- DIDs identify the DID subject
 						- DID URLs identify a _resource_ to be located (typically part of a DID document)
@@ -614,24 +629,39 @@
 					</figure>
 				</section>
 
+				<!-- <section>
+					<h2>Digression: DID URLs</h2>
+
+					<ul>
+						<li>DIDs identify the DID subject</li>
+						<li>There is a need to identify a resource <em>within</em> a DID Document:
+							<br>   <code style='color:blue'>did:xyz:abcde1234567<span style="color:red">#key</span></code></li>
+						<li>Formally, these are <em>not</em> DIDs, but <em>DID URLs</em>: they are used to identify resources in general</li>
+					</ul>
+					<p style="font-size: 80%;">(The formal specification of DID URLs is more powerful, but we do not use it here…)</p>
+				</section> -->
 
 				<section data-markdown>
 					<textarea data-template>
-						## Public Keys
+						## Verification methods
 
 						- List of various public keys
 						- Their usage is not specified: can be used for DID verification but also for any other application
 
 						```
 						{
-							"publicKey":[{
+							"verificationMethod":[{
 								"id":"did:example:12345#keys-1",
-								"type":"RsaVerificationKey2018",
-								"publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n" 
+								"type":"JsonWebKey2020",
+								"publicKeyJwk": {
+									"kty": "OKP",
+									"crv": "Ed25519",
+									"x": "VCpo2LMLhn6iWku8MKvSLg2ZAoC-nlOyPVQaO3FxVeQ"
+								}
 							},{
 								"id":"did:example:12345#keys-2",
-								"type":"Secp256k1VerificationKey2018",
-								"publicKeyHex":"02b97c30de767f084ce30...16a3263d29f1450936b71"
+								"type":"Ed25519VerificationKey2018",
+								"publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
 							}]
 						}						  
 						```
@@ -652,29 +682,10 @@
 							"did:example:12345#keys-1",
 							{
 								"id":"did:example:12345#keys-3",
-								"type":"Ed25519VerificationKey2018",
-								"publicKeyBase58":"H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+								"type":"X25519KeyAgreementKey2019",
+								"publicKeyBase58": "9hFgmPVfmBZwRvFEyniQDBkz9LmV7gDEqytWyGZLmDXE"
 							}]
 						}
-						```
-					</textarea>
-				</section>
-
-				<section data-markdown>
-					<textarea data-template>
-						## Proof
-
-						- A cryptographic proof of the integrity of the document
-
-						```
-						{
-							"proof": {
-								"type":"LinkedDataSignature2015",
-								"created":"2020-01-16T17:29:20Z",
-								"creator":"did:example:12345#keys-1",
-								"signatureValue":"QNB13Y7Q9...1tzjn4w=="
-							}
-						}						
 						```
 					</textarea>
 				</section>
@@ -688,32 +699,18 @@
 						```
 						{
 							"service":[{
-								"type":"identityHub",
-								"publicKey":"did:example:12345#keys-2",
+								"type":"IdentityHub",
+								"verificationMethod":"did:example:12345#keys-2",
 								"serviceEndpoint":"https://example.org/identityservice"
 							},{
-								"type":"PhotoStreamService",
+								"type":"MessagingService",
 								"serviceEndpoint":"https://example.org/photos/34567"
-							},{
-								"type":"PersonalWebSite",
-								"serviceEndpoint":"https://www.example2.org/myHomePage"
 							}]
 						}
 						```
 					</textarea>
 				</section>
 
-				<section data-markdown>
-					<textarea data-template>
-						## There are some other terms
-
-						- “Metadata”, like created, updated,
-						- There is a separate extensibility model which ensures that additional terms may be present in a DID Document, e.g.,
-							- types of the service endpoints
-							- method specific information
-							- application specific information
-					</textarea>
-				</section>
 				<!-- </section> -->
 
 				<section>
@@ -723,6 +720,8 @@
 						<dd><a href="https://www.w3.org/TR/did-use-cases/">https://www.w3.org/TR/did-use-cases/</a></dd>
 						<dt>Core spec</dt>
 						<dd><a href="https://www.w3.org/TR/did-core/">https://www.w3.org/TR/did-core/</a></dd>
+						<dt>DID Specification Registries</dt>
+						<dd><a href="https://www.w3.org/TR/did-spec-registries/">https://www.w3.org/TR/did-spec-registries/</a></dd>
 						<dt>These slides</dt>
 						<dd><a href="https://iherman.github.io/did-talks/talks/generic/">https://iherman.github.io/did-talks/talks/generic/</a></dd>
 					</dl>
@@ -730,8 +729,6 @@
 				<section>
 					<h2>Some more documents to come</h2>
 					<dl>
-						<dt>Registry</dt>
-						<dd>Registry for various terms: crypto terms, methods, additional terms,…</dd>
 						<dt>Rubric</dt>
 						<dd>Documenting what criteria to look for when choosing a specific method</dd>
 						<dt>Implementation guide</dt>
@@ -744,8 +741,8 @@
 
 						- Draft specification was developed in a W3C CG
 						- Working Group started in September 2019
-						- Plan is to be technically ready (i.e., Candidate Recommendation) by summer 2020
-						- Recommendation should be available by summer 2021
+						- Plan is to be technically ready (i.e., Candidate Recommendation) in January 2021
+						- Recommendation should be available by by the end of 2021
 					</textarea>
 				</section>
 
