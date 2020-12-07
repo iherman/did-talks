@@ -65,6 +65,7 @@
 							- stars, galaxies,…
 							- vehicles, airplanes,…
 							- intelligent home devices, Internet/Web of Things,…
+							- abstract concepts
 					</textarea>
 				</section>
 
@@ -117,7 +118,7 @@
 
 						- *Is it easy to create?*
 							- https://www.ivan-herman.net depends on buying a host name
-							- ivan@w3.org is not meant to be an identifier, and an email address is not “cheap”
+							- ivan@w3.org is not meant to be an identifier, and an email address also depends on a host name
 						- *Is it decentralized?*
 							- https://www.ivan-herman.net depends on a single point of failure; what happens if the hosting site disappears?
 							- 0000-0003-0782-2704 depends on the ORCID database. What happens if it is discontinued, hacked, etc?
@@ -128,13 +129,13 @@
 					<textarea data-template>
 						## Problems with current identifiers
 
-						- *Is it persistent*
+						- *Is it persistent?*
 							- When I leave the W3C then ivan@w3.org disappears… 
 							- If I do not pay for the `ivan-herman.net` domain any more, the URL disappears…
 						- *Is it resolvable to some reasonable information?*
 							- How can I get more information on what 0000-0003-0782-2704 identifies?
 						- *Is it (cryptographically) verifiable?*
-							- What about https://www.ivan-herman.com? How can one prove that this domain is _**not**_ referring to me?
+							- What about https://www.ivan-herman.com? How could I prove that this domain is _**not**_ referring to me?
 							- What happens if I stop paying for the domain and somebody else buys it?
 					</textarea>
 				</section>
@@ -158,24 +159,14 @@
 						    - it should be quick and “cheap” to create possibly thousands of DIDs
 						- *Decentralized*
 							- do not depend on centralized registries, identity providers, authorities, etc. 
-							- the DID has a sovereign controller, an the entity identified explicitly
-						        - the “subject” of the identifier may be different (e.g., the owner of a dog “controls” the DID identifying the dog)
-					</textarea>
-				</section>
-
-				<section data-markdown  class='not_in_subsection'>
-					<textarea data-template>
-						## Goals of DIDs
-
 						- *Persistent*
 						    - once created, it is permanently assigned to the subject
 						- *Resolvable*
 						    - it is possible to find out basic set of information on the subject
 						- *Cryptographically verifiable*
-						    - there is a mechanism to cryptographically prove that it indeed identifies a specific subject (possibly controlled by a separate controller) and nothing else
+						    - there is a mechanism to cryptographically prove identity and ownership
 					</textarea>
 				</section>
-
 
 				<!-- <section class='subsection-container'> -->
 				<section class='subtitle subsection'  data-background='assets/images/birds_eye.jpg'> 
@@ -199,11 +190,11 @@
 						- Also known as ”Verifiable Data Registry”
 						- There may be several of those!
 							- in the DID world, the term _method_ is used for the different approaches and/or implementations
-						- Different methods can have very different characteristics
-							- May be based on distributed ledgers (generic or specialized)
-							- DID documents stored on specialized sites (e.g., github)
+						- Different methods can have different approaches
+							- May be based on distributed ledgers (generic, like Bitcoin or Ethereum, or custom built)
+							- DID documents stored on specialized sites (e.g., GitHub)
 							- May be ephemeral DIDs with lighter requirements (e.g., on an intelligent device)
-						- The choice depends on the relative importance of the various requirements for a specific usage
+						- The choice depends on the relative importance of the requirements for a specific usage
 					</textarea>
 				</section>
 
@@ -212,8 +203,9 @@
 						## DID Documents
 
 						- Contain reference to the “controllers”, i.e., entities that may make changes on the DID Document
-						- Include cryptographic information related to the DID subject
-							- RSA, secp25519 elliptical curve keys, bitcoin elliptic curve keys, etc.
+							- the controller may or may not be identical to the “subject” of the identification
+						- Include cryptographic data related to the DID subject
+							- RSA, various elliptical curve keys, etc.
 							- can be expressed using JWK or with DID specific terms
 							- can be used for 
 								- authentication;
@@ -231,7 +223,7 @@
 
 						- May contain other types of data related to the subject
 							- reference to alternative identities (“`alsoKnownAs`”)
-							- various service references (e.g., access to a service providing credentials)
+							- various service references (e.g., access to a credential service)
 							- etc.
 						- May or may not physically “exist” somewhere in the database 
 							- some methods generate them on-the-fly
@@ -240,12 +232,12 @@
 
 				<section data-markdown>
 					<textarea data-template>
-						## DIDs and DID Documents are closely coupled
+						## DIDs and DID Documents are tightly coupled
 
-						- DIDs have the right characteristics through the DID Document
-							- DID documents are the “representation data and metadata” of a DID in the Web architecture
+						- DIDs have the right features _via_ its DID Document
 						- A DID Document is tightly bound to the DID it “describes”
-						- DID+DID Document may be also used as a decentralized cryptographic keychain for various cryptography applications
+						- _The cryptographic data in the DID Document_ is the feature that makes DIDs special
+							- DID+DID Document may be also used as a decentralized cryptographic keychain for various cryptography applications
 					</textarea>
 				</section>
 
@@ -280,7 +272,7 @@
 							- identify objects in an internet of “things”
 							- etc.
 						- DID usage is often bound to Verifiable Credentials
-							- e.g., life-long credential proving a University Degree, identified with a DID
+							- e.g., life-long and un-forgeable credential proving a University Degree, bound to a DID
 					</textarea>
 				</section>
 
@@ -312,9 +304,6 @@
 									<li>the information has not been tampered with</li>
 								</ul>
 							</li>
-							<li>
-								The same mechanism can be used for constituent parts of goods but the information can remain fully decentralized
-							</li>
 						</ul>
 					</div>
 				</section>
@@ -342,7 +331,7 @@
 						</div>
 						<ul>
 							<li>
-								No need for a complex and centralized key management system
+								No need for centralized key management
 								<ul>
 									<li>there may be different ledgers for the various participants</li>
 								</ul>
@@ -399,8 +388,7 @@
 						- DID are within the IETF/W3C world
 							- tools, libraries may be used to manage them
 							- existing specifications automatically apply to DIDs:
-								- "`<a href='did:btcr:xyv2-xzpq-q9wa-p7t'>abcd</a>`" is valid HTML
-								- "`<did:btcr:xyv2-xzpq-q9wa-p7t> a rdf:Class.`" is a valid RDF Turtle statement
+								- e.g., "`<a href='did:btcr:xyv2-xzpq-q9wa-p7t'>abcd</a>`" is valid HTML
 						- _DIDs are part of the Web_
 					</textarea>
 				</section>
@@ -460,7 +448,7 @@
 						## Methods in general
 						
 						- Lots of experimentation is happening, exploring different methods
-							- there is also a need to develop proper user interfaces, applications, etc, to store DIDs in personal wallets, for example
+							- there is also a need to develop proper user interfaces, applications, etc., to store DIDs in personal wallets, for example
 						- We can expect to see a convergence of methods to only a few in the coming years 
 					</textarea>
 				</section>
@@ -493,10 +481,15 @@
 						```
 						{
 							"id":"did:example:abcedefgh", 
-							"controller":"did:example:xyzwvy", 
-							"verificationMethod":[{ ... }], 
+							"controller":"did:example:xyzwvy",
+
+							"verificationMethod":[{ ... }],
+
 							"authentication":[{ ... }], 
 							"assertionMethod":[{ ... }], 
+							"capabilityInvocation":[{ ... }], 
+							"capabilityDelegation":[{ ... }],
+
 							"service":[{ ... }] 
 						}
 						```
@@ -508,7 +501,7 @@
 						## Verification methods
 
 						- List of various public keys
-						- Their usage is not specified: can be used for DID verification but also for any other application
+						- Their usage is not specified: can be used for, e.g., DID authentication
 
 						```
 							"verificationMethod":[{
@@ -533,7 +526,7 @@
 						## Authentication
 
 						- Keys that can be used for the _authentication_ of the controller:
-							- can refer to a key listed separately in `publicKey` (via a DID URL)
+							- can refer to a key listed separately in `verificationMethod`
 							- can include a full key that can be used for authentication only
 
 						```
@@ -579,7 +572,7 @@
 
 						- Draft specification was developed in a W3C CG
 						- Working Group started in September 2019
-						- Plan is to be technically ready (i.e., Candidate Recommendation) in January 2021
+						- Plan is to be technically ready (i.e., a Candidate Recommendation) in January 2021
 						- Recommendation should be available by by the end of 2021 (depending on available implementations)
 					</textarea>
 				</section>
@@ -589,7 +582,7 @@
 					<dl>
 						<dt>Use cases and requirements</dt>
 						<dd><a href="https://www.w3.org/TR/did-use-cases/">https://www.w3.org/TR/did-use-cases/</a></dd>
-						<dt>Core spec</dt>
+						<dt>Core specification</dt>
 						<dd><a href="https://www.w3.org/TR/did-core/">https://www.w3.org/TR/did-core/</a></dd>
 						<dt>DID Specification Registries</dt>
 						<dd><a href="https://www.w3.org/TR/did-spec-registries/">https://www.w3.org/TR/did-spec-registries/</a></dd>
@@ -601,7 +594,7 @@
 				<section>
 					<h2>Some more documents to come</h2>
 					<dl>
-						<dt>Rubric</dt>
+						<dt>DID Method Rubric</dt>
 						<dd>Documenting what criteria to look for when choosing a specific method</dd>
 						<dt>Implementation guide</dt>
 					</dl>
@@ -612,12 +605,12 @@
 					<p style="transform:translateY(1em)">Thank you for your attention!<br><span style="font-size: 70%;">ivan@w3.org</span></p>
 				</section>
 
-				<section class='subtitle'>
+				<!-- <section class='subtitle'>
 					<p style='font-size:85%; transform: translateY(7em)'>These slides: <a href="https://iherman.github.io/did-talks/talks/2020-Fintech/#/">https://iherman.github.io/did-talks/talks/2020-Fintech/#/</a></p>
 					<figure style="transform: translateY(8em)scale(1.1);">
-						<img src='qr.svg' alt='qr code for https://iherman.github.io/did-talks/talks/2020-Fintech/#/' width=150>
+						<img src='./assets/qr.svg' alt='qr code for https://iherman.github.io/did-talks/talks/2020-Fintech/#/' width=150>
 					</figure>
-				</section>
+				</section> -->
 			</div>
 		</div>
 
