@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Decentralized Identifiers</title>
+		<title>Verifiable Credentials, Decentralized Identifiers</title>
 
 		<link rel="stylesheet" href="reveal/css/reveal.css">
 		<link rel="stylesheet" href="assets/css/w3c.css" id="theme">
@@ -30,8 +30,8 @@
 				<section class="title" >
 					<div style='transform: translateY(-0.5em)'>
 						<h1>Verifiable Credentials,<br/>Decentralized Identifiers</h1>
-						<h2>ITU WHO Workshop on Smart Vaccination Certificate Exchange, 2021-08-11</h2>
-						<h2>Ivan Herman, <a href="mailto:ivan@w3.org">ivan@w3.org</a></h2>	
+						<h2>ITU-WHO Workshop on Smart Vaccination Certificate Exchange, 2021-08-11</h2>
+						<h2>Ivan Herman, W3C, <a href="mailto:ivan@w3.org">ivan@w3.org</a></h2>	
 					</div>
 				</section>
 
@@ -40,7 +40,7 @@
 					<div class='left_media'>
 						<figure>
 							<img src="assets/images/tbl.jpeg" alt="Photo of Tim Berners-Lee">
-							<caption>Tim Berners-Lee, Director of W3C</caption>
+							<figcaption>Tim Berners-Lee, Director of W3C</figcaption>
 						</figure>
 						<ul>
 							<li>Founded in 1994</li>
@@ -55,11 +55,11 @@
 					<textarea data-template>
 						## W3C Recommendations (a.k.a. “Standards”)
 
-						- are developed by _Working Groups_
+						- Specified by _Working Groups_
 						    - staffed by experts delegated by W3C Members (companies, institutions, universities…)
 							- chartered by the W3C Membership
-						- are voted upon by the full W3C Membership
-						- are developed under the [W3C Patent Policy](https://www.w3.org/Consortium/Patent-Policy/):
+						- Final versions voted upon by the W3C Membership
+						- Developed under the [W3C Patent Policy](https://www.w3.org/Consortium/Patent-Policy/):
 							- are freely available to all
 							- can be implemented on a Royalty Free basis
 					</textarea>
@@ -70,7 +70,107 @@
 				<section class='subtitle subsection' data-background='assets/images/enter.jpg'>
 					<p style="transform:translateX(0.5em)translateY(2em); background: hsla(0, 0%, 98%, 0.5);">Verifiable Credentials</p>
 				</section>
-					
+
+				<section data-markdown>
+					<textarea data-template>
+						## What is a Verifiable Credential?
+
+						- A digital resource that can hold the same credential data as a physical credential (driving license, university diploma, medical information)
+						- The resource also includes cryptographic data to make the credential tamper evident and trustworthy (e.g., digital signature)
+						- It uses digital identifiers to refer to the ”subject”, the ”issuer”, or the “holder” of the credential 
+					</textarea>
+				</section>
+
+				<section>
+					<h2>Simple View of a Verifiable Credential </h2>
+					<div class='left_media'>
+						<div>
+							<figure class='svg'>
+								<img src="assets/images/credential.svg" alt=""/>
+							</figure>
+							<figure class='svg_print'>
+								<img src="assets/images/credential.png" width="400"/>
+							</figure>		
+						</div>
+						<ul>
+							<ul>
+								<li>Metadata: contain expiry dates, representative image, identification of the issuer and the subject, etc.</li>
+								<li>Proof(s): contain the cryptographic data for, e.g., signatures (keys, signature values, etc.)</li>
+							</ul>
+						</ul>
+					</div>
+				</section>
+
+				<section>
+					<h2>Simple View of a Verifiable Credential</h2>
+					<figure class='svg' style="transform: translateY(-2.9em)scale(0.8);">
+						<img src="assets/images/credential-graph.svg" width="1100" alt=""/>
+					</figure>
+					<figure class='svg_print'>
+						<img src="assets/images/credential-graph.png" width="800"/>
+					</figure>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## The Verifiable Credential standard provides a framework
+
+						- The Recommendation itself standardizes terms like “`issuanceDate`” or “`proof`”
+						- The final application defines the terms like “`alumniOf`” or “`AlumniCredential`”
+						- This extension mechanism is at the heart of the usage pattern for Verifiable Credentials
+					</textarea>
+				</section>
+
+
+				<section data-markdown>
+					<textarea data-template>
+						## Representation of Verifiable Credentials
+
+						- The abstract model can be “expressed” in JSON, JSON-LD, CBOR…
+							- can then be encoded in, say, a QR code
+						- The cryptographic data can be expressed in various formats, e.g., JWT, JSON-LD Cryptographic data,…
+					</textarea>
+				</section>
+
+				<section>
+						<h2>Small (incomplete) example</h2>
+
+<pre><code style='max-height:100%'>{
+	"id": "http://example.edu/credentials/1872",
+	"type": ["VerifiableCredential", "AlumniCredential"],
+	"issuer": "https://example.edu/issuers/565049",
+	"issuanceDate": "2010-01-01T19:73:24Z",
+	"credentialSubject": {
+		"id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
+		"alumniOf": {
+			"id": "did:example:c276e12ec21ebfeb1f712ebc6f1",
+			"name": "Example University"
+		}
+	},
+	"proof": {
+		"type": "RsaSignature2018",
+		"proofPurpose": "assertionMethod",
+		"verificationMethod": "https://example.edu/issuers/keys/1",
+		"created": "2017-06-18T21:19:10Z",
+		"jws": "eyJhbGciOiJS...HUdBBPM"
+	}
+}
+</code></pre>
+				</section>
+
+				
+
+
+				<section data-markdown>
+					<textarea data-template>
+						## Identifiers play an essential role in credentials
+
+						- Per specification, any digital identifier can be used (based on schemes like `https`, `mailto`, etc.)
+						- But the control, the reliability, etc, of the identifier may be crucial
+						- Here is where Decentralized Identity (DID) comes into the picture
+					</textarea>
+				</section>
+
 				<!-- ================================== -->
 				<section class='subtitle subsection' data-background='assets/images/enter.jpg'>
 					<p style="transform:translateX(0.5em)translateY(2em); background: hsla(0, 0%, 98%, 0.5);">Decentralized Identity (DID)</p>
@@ -78,9 +178,14 @@
 
 				<!-- ======================================== -->
 
-				<section class='subtitle not_in_subsection'>
-					<p style="font-size: 150%;">A DID is a self-sovereign identity, i.e., lifetime, portable, and verifiable digital identity that does not depend on any centralized authority</p>
+				<section data-markdown class='not_in_subsection'> 
+					<textarea data-template>
+						## What is DID?
+
+						A DID is a self-sovereign identity, i.e., lifetime, portable, and verifiable digital identity that does not depend on any centralized authority
+					</textarea>
 				</section>
+
 
 				<section data-markdown class='not_in_subsection'> 
 					<textarea data-template>
@@ -145,30 +250,6 @@
 
 				<section data-markdown>
 					<textarea data-template>
-						## DID Documents (cont.)
-
-						- May also contain other types of data related to the subject
-							- reference to alternative identities (“`alsoKnownAs`”)
-							- various service references (e.g., access to a credential service)
-							- etc.
-						- May or may not physically “exist” somewhere in the database 
-							- some methods generate them on-the-fly
-					</textarea>
-				</section>
-
-				<section data-markdown>
-					<textarea data-template>
-						## DIDs and DID Documents are tightly coupled
-
-						- DIDs have the right features _via_ its DID Document
-						- A DID Document is tightly bound to the DID it “describes”
-						- _The cryptographic data in the DID Document_ is the feature that makes DIDs special
-							- DID+DID Document may be also used as a decentralized cryptographic keychain for various cryptography applications
-					</textarea>
-				</section>
-
-				<section data-markdown>
-					<textarea data-template>
 						## Serialization of DID Documents
 
 						- DID Documents are defined via an abstract data model
@@ -203,7 +284,7 @@
 				<section class='subtitle'>
 					<p style='font-size:85%; transform: translateY(7em)'>These slides: <a href="https://iherman.github.io/did-talks/talks/2021-WHO_ITU/#/">https://iherman.github.io/did-talks/talks/2021-WHO_ITU/#/</a></p>
 					<figure style="transform: translateY(8em)scale(1.1);">
-						<img src='./assets/qr.svg' alt='qr code for https://iherman.github.io/did-talks/talks/2021-WHO_ITU/#/' width=150>
+						<img src='./assets/qr.png' alt='qr code for https://iherman.github.io/did-talks/talks/2021-WHO_ITU/#/' width=150>
 					</figure>
 				</section>
 			</div>
