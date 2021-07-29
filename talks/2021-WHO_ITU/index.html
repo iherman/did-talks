@@ -34,6 +34,13 @@
 						<h2>Ivan Herman, W3C, <a href="mailto:ivan@w3.org">ivan@w3.org</a></h2>	
 					</div>
 				</section>
+				
+				<section class='subtitle'>
+					<p style='font-size:85%; transform: translateY(7em)'>These slides: <a href="https://iherman.github.io/did-talks/talks/2021-WHO_ITU/#/">https://iherman.github.io/did-talks/talks/2021-WHO_ITU/#/</a></p>
+					<figure style="transform: translateY(8em)scale(1.1);">
+						<img src='./assets/qr.png' alt='qr code for https://iherman.github.io/did-talks/talks/2021-WHO_ITU/#/' width=150>
+					</figure>
+				</section>
 
 				<section>
 					<h2>About W3C ”Leading the Web to its Full Potential”</h2>
@@ -67,8 +74,8 @@
 
 				<!-- ================================== -->
 				<!-- <section class='subsection-container'> -->
-				<section class='subtitle subsection' data-background='assets/images/enter.jpg'>
-					<p style="transform:translateX(0.5em)translateY(2em); background: hsla(0, 0%, 98%, 0.5);">Verifiable Credentials</p>
+				<section class='subtitle subsection' data-background='assets/images/vc.jpg'>
+					<p style="transform:translateX(0.5em)translateY(1.6em); background: hsla(0, 0%, 98%, 0.65);">Verifiable Credentials</p>
 				</section>
 
 				<section data-markdown>
@@ -86,7 +93,9 @@
 					<div class='left_media'>
 						<div>
 							<figure class='svg'>
-								<img src="assets/images/credential.svg" alt=""/>
+								<img src="assets/images/credential.svg" alt="a Verifible
+								Credential contains Credential Metadata, Claim(s), and
+								Proof(s)""/>
 							</figure>
 							<figure class='svg_print'>
 								<img src="assets/images/credential.png" width="400"/>
@@ -104,7 +113,18 @@
 				<section>
 					<h2>Simple View of a Verifiable Credential</h2>
 					<figure class='svg' style="transform: translateY(-2.9em)scale(0.8);">
-						<img src="assets/images/credential-graph.svg" width="1100" alt=""/>
+						<img src="assets/images/credential-graph.svg" width="1100" alt="diagram with a
+						Credential Graph on top connected via a proof to a
+						Proof Graph on the bottom.  The Credental Graph has
+						Credential 123 with 4 properties: 'type' of value
+						AlumniCredential, 'issuer' of Example University,
+						'issuanceDate' of 2010-01-01T19:73:24Z, and
+						credentialSubject of Pat, who has an alumniOf property
+						with value of Example University.  The Proof Graph has
+						Signature 456 with 5 properties: 'type' of
+						RsaSignature2018, 'verificationMethod' of Example University
+						Public Key 7, 'created' of 2017-06-18T21:19:10Z, and 'jws'
+					  of 'BavEll0...3JT24='"/>
 					</figure>
 					<figure class='svg_print'>
 						<img src="assets/images/credential-graph.png" width="800"/>
@@ -126,9 +146,11 @@
 					<textarea data-template>
 						## Representation of Verifiable Credentials
 
-						- The abstract model can be “expressed” in JSON, JSON-LD, CBOR…
+						- The abstract model can be “expressed” in JSON, JSON-LD, CBOR,…
 							- can then be encoded in, say, a QR code
-						- The cryptographic data can be expressed in various formats, e.g., JWT, JSON-LD Cryptographic data,…
+						- The cryptographic data can be expressed in various formats, e.g., JWT, JSON-LD Proofs and Signatures,…
+						- The standard does not specify the “higher level” functionalities, e.g., the behavior of specialized wallets
+							- this is left to implementers and to market forces
 					</textarea>
 				</section>
 
@@ -136,6 +158,10 @@
 						<h2>Small (incomplete) example</h2>
 
 <pre><code style='max-height:100%'>{
+	"@context": [
+		"https://www.w3.org/2018/credentials/v1",
+		"https://www.w3.org/2018/credentials/examples/v1"
+	],
 	"id": "http://example.edu/credentials/1872",
 	"type": ["VerifiableCredential", "AlumniCredential"],
 	"issuer": "https://example.edu/issuers/565049",
@@ -151,15 +177,11 @@
 		"type": "RsaSignature2018",
 		"proofPurpose": "assertionMethod",
 		"verificationMethod": "https://example.edu/issuers/keys/1",
-		"created": "2017-06-18T21:19:10Z",
 		"jws": "eyJhbGciOiJS...HUdBBPM"
 	}
 }
 </code></pre>
 				</section>
-
-				
-
 
 				<section data-markdown>
 					<textarea data-template>
@@ -172,8 +194,8 @@
 				</section>
 
 				<!-- ================================== -->
-				<section class='subtitle subsection' data-background='assets/images/enter.jpg'>
-					<p style="transform:translateX(0.5em)translateY(2em); background: hsla(0, 0%, 98%, 0.5);">Decentralized Identity (DID)</p>
+				<section class='subtitle subsection' data-background='assets/images/did.jpg'>
+					<p style="transform:translateX(0.5em)translateY(2em); background: hsla(0, 0%, 98%, 0.5);">Decentralized Identities (DID)</p>
 				</section>
 
 				<!-- ======================================== -->
@@ -214,7 +236,7 @@
 					</figure>
 				</section>
 
-				<section data-markdown data-notes='"Ephemeral" means that it is all right to re-create new ID-s if needed (eg, changing crypto keys for an intelligent device)'>
+				<section data-markdown>
 					<textarea data-template>
 						## “Global, distributed, key-value database”
 
@@ -263,22 +285,25 @@
 				<!-- </section> -->
 
 				<!-- ================================== -->
-				<section class='subtitle subsection' data-background='assets/images/enter.jpg'>
+				<!-- <section class='subtitle subsection' data-background='assets/images/enter.jpg'>
 					<p style="transform:translateX(0.5em)translateY(2em); background: hsla(0, 0%, 98%, 0.5);">Final notes</p>
-				</section>
+				</section> -->
 
-				<section>
-					<h2>Documents to read</h2>
-					<dl>
-						<dt>Core specification</dt>
-						<dd><a href="https://www.w3.org/TR/did-core/">https://www.w3.org/TR/did-core/</a></dd>
-						<dt>DID Specification Registries</dt>
-						<dd><a href="https://www.w3.org/TR/did-spec-registries/">https://www.w3.org/TR/did-spec-registries/</a></dd>
-					</dl>
-				</section>
 
-				<section class='subtitle'>
-					<p style="transform:translateY(1em)">Thank you for your attention!<br><span style="font-size: 70%;">ivan@w3.org</span></p>
+				<section data-markdown>
+					<textarea data-template>
+						## Documents to read
+
+						- *Verifiable Credentials:*
+							- Data Model Specification: https://www.w3.org/TR/vc-data-model/
+							- Use Cases: https://www.w3.org/TR/vc-use-cases/
+						- _Decentralized Identifiers:_
+							- Core Architecture and Data model: https://www.w3.org/TR/did-core/
+							- Use Cases: https://www.w3.org/TR/did-use-cases/
+						- These slides:
+							- In HTML: https://iherman.github.io/did-talks/talks/2021-WHO_ITU/#/
+							- In PDF: https://iherman.github.io/did-talks/talks/2021-WHO_ITU/index.pdf
+					</textarea>
 				</section>
 
 				<section class='subtitle'>
