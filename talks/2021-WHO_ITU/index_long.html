@@ -35,6 +35,49 @@
 					</div>
 				</section>
 				
+				<section class='subtitle'>
+					<p style='font-size:85%; transform: translateY(7em)'>These slides: <a href="https://iherman.github.io/did-talks/talks/2021-WHO_ITU/#/">https://iherman.github.io/did-talks/talks/2021-WHO_ITU/#/</a></p>
+					<figure style="transform: translateY(8em)scale(1.1);">
+						<img src='./assets/qr.png' alt='qr code for https://iherman.github.io/did-talks/talks/2021-WHO_ITU/#/' width=150>
+					</figure>
+				</section>
+
+				<section>
+					<h2>About W3C ”Leading the Web to its Full Potential”</h2>
+					<div class='left_media'>
+						<figure>
+							<img src="assets/images/tbl.jpeg" alt="Photo of Tim Berners-Lee">
+							<figcaption>Tim Berners-Lee, Director of W3C</figcaption>
+						</figure>
+						<ul>
+							<li>Founded in 1994</li>
+							<li>≈ 450 Members, ≈ 60 staff all over the World</li>
+							<li>Focuses on the Web Ecosystem: users, developers, browsers, etc.</li>
+							<li>Develops standard technologies for the Open Web Platform (e.g., HTML, SVG, CSS, MathML, …)</li>
+						</ul>
+					</div>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## W3C Recommendations (a.k.a. “Standards”)
+
+						- Specified by _Working Groups_
+						    - staffed by experts delegated by W3C Members (companies, institutions, universities…)
+							- chartered by the W3C Membership
+						- Final versions voted upon by the W3C Membership
+						- Developed under the [W3C Patent Policy](https://www.w3.org/Consortium/Patent-Policy/):
+							- are freely available to all
+							- can be implemented on a Royalty Free basis
+					</textarea>
+				</section>
+
+				<!-- ================================== -->
+				<!-- <section class='subsection-container'> -->
+				<section class='subtitle subsection' data-background='assets/images/vc.jpg'>
+					<p style="transform:translateX(0.5em)translateY(1.6em); background: hsla(0, 0%, 98%, 0.65);">Verifiable Credentials</p>
+				</section>
+
 				<section data-markdown>
 					<textarea data-template>
 						## What is a Verifiable Credential?
@@ -111,6 +154,34 @@
 					</textarea>
 				</section>
 
+				<section>
+						<h2>Small (incomplete) example</h2>
+
+<pre><code style='max-height:100%'>{
+	"@context": [
+		"https://www.w3.org/2018/credentials/v1",
+		"https://www.w3.org/2018/credentials/examples/v1"
+	],
+	"id": "http://example.edu/credentials/1872",
+	"type": ["VerifiableCredential", "AlumniCredential"],
+	"issuer": "https://example.edu/issuers/565049",
+	"issuanceDate": "2010-01-01T19:73:24Z",
+	"credentialSubject": {
+		"id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
+		"alumniOf": {
+			"id": "did:example:c276e12ec21ebfeb1f712ebc6f1",
+			"name": "Example University"
+		}
+	},
+	"proof": {
+		"type": "RsaSignature2018",
+		"proofPurpose": "assertionMethod",
+		"verificationMethod": "https://example.edu/issuers/keys/1",
+		"jws": "eyJhbGciOiJS...HUdBBPM"
+	}
+}
+</code></pre>
+				</section>
 
 				<section data-markdown>
 					<textarea data-template>
@@ -120,6 +191,11 @@
 						- But the control, the reliability, etc, of the identifier may be crucial
 						- Here is where Decentralized Identity (DID) comes into the picture
 					</textarea>
+				</section>
+
+				<!-- ================================== -->
+				<section class='subtitle subsection' data-background='assets/images/did.jpg'>
+					<p style="transform:translateX(0.5em)translateY(2em); background: hsla(0, 0%, 98%, 0.5);">Decentralized Identities (DID)</p>
 				</section>
 
 				<!-- ======================================== -->
@@ -169,28 +245,73 @@
 							- in the DID world, the term _method_ is used for the different approaches and/or implementations
 						- Different methods can have different approaches
 							- may be based on distributed ledgers (generic, like Bitcoin or Ethereum, or custom built)
-							- DID documents may be stored on specialized sites, databases (e.g., GitHub)
+							- DID documents stored on specialized sites (e.g., GitHub)
+							- may be ephemeral DIDs with lighter requirements (e.g., on an intelligent device)
 						- The choice depends on the relative importance of the requirements for a specific usage
 					</textarea>
 				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## DID Documents
+
+						- Contain reference to the “controllers”, i.e., entities that may make changes on the DID Document
+							- the controller may or may not be identical to the “subject” of the identification
+						- Include cryptographic data related to the DID subject
+							- RSA, various elliptical curve keys, etc.
+							- can be expressed using JWK or with DID specific terms
+							- can be used for 
+								- authentication;
+								- assertions (e.g., of credentials);
+								- key agreement (e.g., to establish secure communication);
+								- capability invocation (e.g., authorization to access an API);
+								- capability delegation (e.g., delegate an API access to another authority);
+								- …
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Serialization of DID Documents
+
+						- DID Documents are defined via an abstract data model
+						- Can be serialized as:
+							- JSON
+							- JSON-LD
+							- CBOR
+							- other serializations may come to the fore
+					</textarea>
+				</section>
+				<!-- </section> -->
+
+				<!-- ================================== -->
+				<!-- <section class='subtitle subsection' data-background='assets/images/enter.jpg'>
+					<p style="transform:translateX(0.5em)translateY(2em); background: hsla(0, 0%, 98%, 0.5);">Final notes</p>
+				</section> -->
 
 
 				<section data-markdown>
 					<textarea data-template>
 						## Documents to read
 
-						- Verifiable Credentials:
+						- *Verifiable Credentials:*
 							- Data Model Specification: https://www.w3.org/TR/vc-data-model/
 							- Use Cases: https://www.w3.org/TR/vc-use-cases/
 						- Decentralized Identifiers:
 							- Core Architecture and Data model: https://www.w3.org/TR/did-core/
 							- Use Cases: https://www.w3.org/TR/did-use-cases/
-						- A longer version of these slides:
+						- These slides:
 							- In HTML: https://iherman.github.io/did-talks/talks/2021-WHO_ITU/index_long.html/
 							- In PDF: https://iherman.github.io/did-talks/talks/2021-WHO_ITU/index_long.pdf
 					</textarea>
 				</section>
 
+				<section class='subtitle'>
+					<p style='font-size:85%; transform: translateY(7em)'>These slides: <a href="https://iherman.github.io/did-talks/talks/2021-WHO_ITU/#/">https://iherman.github.io/did-talks/talks/2021-WHO_ITU/#/</a></p>
+					<figure style="transform: translateY(8em)scale(1.1);">
+						<img src='./assets/qr.png' alt='qr code for https://iherman.github.io/did-talks/talks/2021-WHO_ITU/#/' width=150>
+					</figure>
+				</section>
 			</div>
 		</div>
 
