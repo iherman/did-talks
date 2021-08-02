@@ -9,3 +9,4 @@ Specific talks:
 * [Generic Talk](./generic/): as its name suggests, not aimed at a specific presentation; it is a full slide set that can be instantiated for a specific presentation. This slide set frequently changes and evolves.
 * 2020
     * [Introduction to DID](./2020-evangelists): talk held on the 27th of April, 2020, to the W3C Evangelists as a DID Introduction 
+    * [Introduction to DID](./2021-Fintech): talk held on on 19th of December, 2020, at the Fintech event of the W3C Chinese Web IG, o 

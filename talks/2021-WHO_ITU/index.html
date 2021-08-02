@@ -1,0 +1,247 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Verifiable Credentials, Decentralized Identifiers</title>
+
+		<link rel="stylesheet" href="reveal/css/reveal.css">
+		<link rel="stylesheet" href="assets/css/w3c.css" id="theme">
+		<!-- Viable alternatives: beige.css, -->
+		<!-- Viable alternatives: black, blood, league, but need new code highlights, change in the colors of the images, and a new version of the logo -->
+
+		<link rel="stylesheet" href="assets/css/highlights/github.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal/css/print/pdf.css' : 'reveal/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<link rel="stylesheet" href="assets/css/my.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section class="title" >
+					<div style='transform: translateY(-0.5em)'>
+						<h1>Verifiable Credentials,<br/>Decentralized Identifiers</h1>
+						<h2>ITU-WHO Workshop on Smart Vaccination Certificate Exchange, 2021-08-11</h2>
+						<h2>Ivan Herman, W3C, <a href="mailto:ivan@w3.org">ivan@w3.org</a></h2>	
+					</div>
+				</section>
+				
+				<section data-markdown>
+					<textarea data-template>
+						## What is a Verifiable Credential?
+
+						- A digital resource that can hold the same credential data as a physical credential (driving license, university diploma, medical information)
+						- The resource also includes cryptographic data to make the credential tamper evident and trustworthy (e.g., digital signature)
+						- It uses digital identifiers to refer to the ”subject”, the ”issuer”, or the “holder” of the credential 
+					</textarea>
+				</section>
+
+				<section>
+					<h2>Simple View of a Verifiable Credential </h2>
+					<div class='left_media'>
+						<div>
+							<figure class='svg'>
+								<img src="assets/images/credential.svg" alt="a Verifible
+								Credential contains Credential Metadata, Claim(s), and
+								Proof(s)""/>
+							</figure>
+							<figure class='svg_print'>
+								<img src="assets/images/credential.png" width="400"/>
+							</figure>		
+						</div>
+						<ul>
+							<ul>
+								<li>Metadata: contain expiry dates, representative image, identification of the issuer and the subject, etc.</li>
+								<li>Proof(s): contain the cryptographic data for, e.g., signatures (keys, signature values, etc.)</li>
+							</ul>
+						</ul>
+					</div>
+				</section>
+
+				<section>
+					<h2>Simple View of a Verifiable Credential</h2>
+					<figure class='svg' style="transform: translateY(-2.9em)scale(0.8);">
+						<img src="assets/images/credential-graph.svg" width="1100" alt="diagram with a
+						Credential Graph on top connected via a proof to a
+						Proof Graph on the bottom.  The Credental Graph has
+						Credential 123 with 4 properties: 'type' of value
+						AlumniCredential, 'issuer' of Example University,
+						'issuanceDate' of 2010-01-01T19:73:24Z, and
+						credentialSubject of Pat, who has an alumniOf property
+						with value of Example University.  The Proof Graph has
+						Signature 456 with 5 properties: 'type' of
+						RsaSignature2018, 'verificationMethod' of Example University
+						Public Key 7, 'created' of 2017-06-18T21:19:10Z, and 'jws'
+					  of 'BavEll0...3JT24='"/>
+					</figure>
+					<figure class='svg_print'>
+						<img src="assets/images/credential-graph.png" width="800"/>
+					</figure>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## The Verifiable Credential standard provides a framework
+
+						- The Recommendation itself standardizes terms like “`issuanceDate`” or “`proof`”
+						- The final application defines the terms like “`alumniOf`” or “`AlumniCredential`”
+						- This extension mechanism is at the heart of the usage pattern for Verifiable Credentials
+					</textarea>
+				</section>
+
+
+				<section data-markdown>
+					<textarea data-template>
+						## Representation of Verifiable Credentials
+
+						- The abstract model can be “expressed” in JSON, JSON-LD, CBOR,…
+							- can then be encoded in, say, a QR code
+						- The cryptographic data can be expressed in various formats, e.g., JWT, JSON-LD Proofs and Signatures,…
+						- The standard does not specify the “higher level” functionalities, e.g., the behavior of specialized wallets
+							- this is left to implementers and to market forces
+					</textarea>
+				</section>
+
+
+				<section data-markdown>
+					<textarea data-template>
+						## Identifiers play an essential role in credentials
+
+						- Per specification, any digital identifier can be used (based on schemes like `https`, `mailto`, etc.)
+						- But the control, the reliability, etc, of the identifier may be crucial
+						- Here is where Decentralized Identity (DID) comes into the picture
+					</textarea>
+				</section>
+
+				<!-- ======================================== -->
+
+				<section data-markdown class='not_in_subsection'> 
+					<textarea data-template>
+						## What is DID?
+
+						A DID is a self-sovereign identity, i.e., lifetime, portable, and verifiable digital identity that does not depend on any centralized authority
+					</textarea>
+				</section>
+
+
+				<section data-markdown class='not_in_subsection'> 
+					<textarea data-template>
+						## Goals  of DIDs
+
+						- *Ease of creation*
+						    - it should be quick and “cheap” to create possibly thousands of DIDs
+						- *Decentralized*
+							- do not depend on centralized registries, identity providers, authorities, etc. 
+						- *Persistent*
+						    - once created, it is permanently assigned to the subject
+						- *Resolvable*
+						    - it is possible to find out basic set of information on the subject
+						- *Cryptographically verifiable*
+						    - there is a mechanism to cryptographically prove identity and ownership
+					</textarea>
+				</section>
+
+				<section>
+					<h2>High level view: DIDs and DID Documents</h2>
+					<figure class='svg' style="transform: translateY(-2.9em)scale(1.1);">
+						<img src="assets/images/DIDs_and_DID_Documents.svg" width="1100" alt="A unique string (DID) goes through a DID Resolution to a global, decentralized, key-value database; from this database comes a DID document containing cryptographic materials (e.g., keys), metadata, Signature); this document is connected to an arrow going back to the DID from the database as a cryptographic verification."/>
+					</figure>
+					<figure class='svg_print'>
+						<img src="assets/images/DIDs_and_DID_Documents.png" width="800"/>
+					</figure>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## “Global, distributed, key-value database”
+
+						- Also known as ”Verifiable Data Registry”
+						- There may be several of those!
+							- in the DID world, the term _method_ is used for the different approaches and/or implementations
+						- Different methods can have different approaches
+							- may be based on distributed ledgers (generic, like Bitcoin or Ethereum, or custom built)
+							- DID documents may be stored on specialized sites, databases (e.g., GitHub)
+						- The choice depends on the relative importance of the requirements for a specific usage
+					</textarea>
+				</section>
+
+
+				<section data-markdown>
+					<textarea data-template>
+						## Documents to read
+
+						- Verifiable Credentials:
+							- Data Model Specification: https://www.w3.org/TR/vc-data-model/
+							- Use Cases: https://www.w3.org/TR/vc-use-cases/
+						- Decentralized Identifiers:
+							- Core Architecture and Data model: https://www.w3.org/TR/did-core/
+							- Use Cases: https://www.w3.org/TR/did-use-cases/
+						- A longer version of these slides:
+							- In HTML: https://iherman.github.io/did-talks/talks/2021-WHO_ITU/index_long.html/
+							- In PDF: https://iherman.github.io/did-talks/talks/2021-WHO_ITU/index_long.pdf
+					</textarea>
+				</section>
+
+			</div>
+		</div>
+
+
+		<script src="reveal/lib/js/head.min.js"></script>
+		<script src="reveal/js/reveal.js"></script>
+		<script src="assets/js/w3c.js"></script>
+
+		<!-- local settings -->
+		<script>
+			// makes use of the svg/png alternatives for printing
+			switch_svg_png();
+
+			// Add a down arrow clue for the section heading
+			// add_section_arrow();
+
+			// Add an alternate color to subsections, with the common w3c logo
+			advanced_background_setting({
+				logo_width  : 86,
+				logo_url    : 'assets/images/w3c-logo.svg',
+				basic_color : 'white',
+				alt_color_1 : 'radial-gradient(#f7fbfc,#f7f2d3)',
+				alt_color_2 : 'radial-gradient(#f7fbfc,#add9e4)',
+			});
+		</script>
+
+		<script>
+			Reveal.initialize({
+				width: 1280,
+				height: 720,
+				margin: 0.1,
+				slideNumber: 'h/v',
+				center: false,
+				transition: 'fade',
+				fragmentInURL: true,
+				history: true,
+				// math: {
+				// 	mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+				// 	// config: 'MML_HTMLorMML'  // See http://docs.mathjax.org/en/latest/config-files.html
+				// 	config: 'TeX-AMS_HTML'
+				// },
+				dependencies: [
+					{ src: 'reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'reveal/plugin/zoom-js/zoom.js', async: true },
+					{ src: 'reveal/plugin/notes/notes.js', async: true },
+					// { src: 'reveal/plugin/math/math.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
