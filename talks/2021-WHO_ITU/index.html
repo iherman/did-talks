@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Verifiable Credentials, Decentralized Identifiers</title>
+		<title>Verifiable Credentials</title>
 
 		<link rel="stylesheet" href="reveal/css/reveal.css">
 		<link rel="stylesheet" href="assets/css/w3c.css" id="theme">
@@ -26,15 +26,7 @@
 	</head>
 	<body>
 		<div class="reveal">
-			<div class="slides">
-				<section class="title" >
-					<div style='transform: translateY(-0.5em)'>
-						<h1>Verifiable Credentials,<br/>Decentralized Identifiers</h1>
-						<h2>ITU-WHO Workshop on Smart Vaccination Certificate Exchange, 2021-08-11</h2>
-						<h2>Ivan Herman, W3C, <a href="mailto:ivan@w3.org">ivan@w3.org</a></h2>	
-					</div>
-				</section>
-				
+			<div class="slides">				
 				<section data-markdown>
 					<textarea data-template>
 						## What is a Verifiable Credential?
@@ -72,7 +64,7 @@
 					<figure class='svg' style="transform: translateY(-2.9em)scale(0.8);">
 						<img src="assets/images/credential-graph.svg" width="1100" alt="diagram with a
 						Credential Graph on top connected via a proof to a
-						Proof Graph on the bottom.  The Credental Graph has
+						Proof Graph on the bottom.  The Credential Graph has
 						Credential 123 with 4 properties: 'type' of value
 						AlumniCredential, 'issuer' of Example University,
 						'issuanceDate' of 2010-01-01T19:73:24Z, and
@@ -90,10 +82,11 @@
 
 				<section data-markdown>
 					<textarea data-template>
-						## The Verifiable Credential standard provides a framework
+						## The standard defines a _framework_
 
 						- The Recommendation itself standardizes terms like “`issuanceDate`” or “`proof`”
 						- The final application defines the terms like “`alumniOf`” or “`AlumniCredential`”
+							- there is a registry to refer to such application-dependent vocabularies
 						- This extension mechanism is at the heart of the usage pattern for Verifiable Credentials
 					</textarea>
 				</section>
@@ -111,88 +104,31 @@
 					</textarea>
 				</section>
 
-
 				<section data-markdown>
 					<textarea data-template>
-						## Identifiers play an essential role in credentials
+						## Some further points
 
-						- Per specification, any digital identifier can be used (based on schemes like `https`, `mailto`, etc.)
-						- But the control, the reliability, etc, of the identifier may be crucial
-						- Here is where Decentralized Identity (DID) comes into the picture
+						- The extension model is applicable to the proof mechanism
+							- new proof methods can be registered
+						- There is an extra layer to separate the “presentation” of (part of) the credential from the credentials themselves. This “presentation” can be checked separately via cryptographic means
+							- e.g., _it is possible to provide a selective disclosure of the data_
 					</textarea>
-				</section>
-
-				<!-- ======================================== -->
-
-				<section data-markdown class='not_in_subsection'> 
-					<textarea data-template>
-						## What is DID?
-
-						A DID is a self-sovereign identity, i.e., lifetime, portable, and verifiable digital identity that does not depend on any centralized authority
-					</textarea>
-				</section>
-
-
-				<section data-markdown class='not_in_subsection'> 
-					<textarea data-template>
-						## Goals  of DIDs
-
-						- *Ease of creation*
-						    - it should be quick and “cheap” to create possibly thousands of DIDs
-						- *Decentralized*
-							- do not depend on centralized registries, identity providers, authorities, etc. 
-						- *Persistent*
-						    - once created, it is permanently assigned to the subject
-						- *Resolvable*
-						    - it is possible to find out basic set of information on the subject
-						- *Cryptographically verifiable*
-						    - there is a mechanism to cryptographically prove identity and ownership
-					</textarea>
-				</section>
-
-				<section>
-					<h2>High level view: DIDs and DID Documents</h2>
-					<figure class='svg' style="transform: translateY(-2.9em)scale(1.1);">
-						<img src="assets/images/DIDs_and_DID_Documents.svg" width="1100" alt="A unique string (DID) goes through a DID Resolution to a global, decentralized, key-value database; from this database comes a DID document containing cryptographic materials (e.g., keys), metadata, Signature); this document is connected to an arrow going back to the DID from the database as a cryptographic verification."/>
-					</figure>
-					<figure class='svg_print'>
-						<img src="assets/images/DIDs_and_DID_Documents.png" width="800"/>
-					</figure>
 				</section>
 
 				<section data-markdown>
 					<textarea data-template>
-						## “Global, distributed, key-value database”
+						## Current status
 
-						- Also known as ”Verifiable Data Registry”
-						- There may be several of those!
-							- in the DID world, the term _method_ is used for the different approaches and/or implementations
-						- Different methods can have different approaches
-							- may be based on distributed ledgers (generic, like Bitcoin or Ethereum, or custom built)
-							- DID documents may be stored on specialized sites, databases (e.g., GitHub)
-						- The choice depends on the relative importance of the requirements for a specific usage
+						- The specification has been a Web Standard for 2 years
+						- A discussion is starting for the renewal of the charter adding some new features; current ideas under discussion
+							- broader range of serializations 
+							- additional proof types for various serializations
+							- formalize the registry mechanism further
 					</textarea>
 				</section>
-
-
-				<section data-markdown>
-					<textarea data-template>
-						## Documents to read
-
-						- Verifiable Credentials:
-							- Data Model Specification: https://www.w3.org/TR/vc-data-model/
-							- Use Cases: https://www.w3.org/TR/vc-use-cases/
-						- Decentralized Identifiers:
-							- Core Architecture and Data model: https://www.w3.org/TR/did-core/
-							- Use Cases: https://www.w3.org/TR/did-use-cases/
-						- A longer version of these slides:
-							- In HTML: https://iherman.github.io/did-talks/talks/2021-WHO_ITU/index_long.html/
-							- In PDF: https://iherman.github.io/did-talks/talks/2021-WHO_ITU/index_long.pdf
-					</textarea>
-				</section>
-
 			</div>
 		</div>
+
 
 
 		<script src="reveal/lib/js/head.min.js"></script>
